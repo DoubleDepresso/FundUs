@@ -1,14 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import SampleFile from './pages/Donor/SampleFile';
+import Homepage from './pages/Homepage';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import ListOfCharities from './pages/ListOfCharities';
+import Help from './pages/Help';
 
 
 const router = new createBrowserRouter([
   {
     path: "/",
-    element: <SampleFile/>
+    element: <Homepage/>
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn/>
+  },
+  {
+    path: "/list-of-charities",
+    element: <ListOfCharities/>
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp/>
+  },
+  {
+    path: "/help",
+    element: <Help/>
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
