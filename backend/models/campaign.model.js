@@ -6,9 +6,9 @@ module.exports = (sequelize, Sequelize) => {
         location:{ 
             type: Sequelize.STRING,
         },
-        host: {
-            type: Sequelize.STRING //should be memberID
-        },
+        // host: {
+        //     type: Sequelize.STRING //should be memberID
+        // },
         type: {
             type: Sequelize.STRING
         },
@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE
         },
         goal: {
-            type: Sequelize.INT
+            type: Sequelize.INTEGER
         },
     },
     {

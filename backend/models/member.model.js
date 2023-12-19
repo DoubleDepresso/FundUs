@@ -7,6 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         username: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true,
         },
         password: {
             type: Sequelize.STRING,
@@ -24,6 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         verification: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true,
         },
     },
     {
