@@ -10,6 +10,7 @@ const Transaction = db.transaction;
 const memberData = require("./data/member.data");
 const campaignData = require("./data/campaign.data")
 const authRouter = require("./routes/auth.route");
+const campaignRouter = require("./routes/campaign.route");
 
 // Association
 Member.hasMany(Campaign, {
@@ -70,6 +71,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/", authRouter);
+app.use("/", campaignRouter);
 
 app.listen(2222, () => {
     console.log("Connected!")
