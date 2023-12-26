@@ -1,3 +1,5 @@
+const { STRING } = require("sequelize");
+
 module.exports = (sequelize, Sequelize) => {
     const Campaign = sequelize.define("campaigns", {
         name: {
@@ -10,22 +12,22 @@ module.exports = (sequelize, Sequelize) => {
         //     type: Sequelize.STRING //should be memberID
         // },
         type: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
         },
         available: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.BOOLEAN,
         },
         description: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
         },
         startDate: {
-            type: Sequelize.DATE
+            type: Sequelize.DATE,
         },
         endDate: {
-            type: Sequelize.DATE
+            type: Sequelize.DATE,
         },
         goal: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
         },
     },
     {

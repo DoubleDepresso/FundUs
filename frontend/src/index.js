@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ListOfCharities from './pages/ListOfCharities';
 import Help from './pages/Help';
+import CreateCampaign from './pages/CreateCampaign';
 
 
 const router = new createBrowserRouter([
@@ -29,7 +30,11 @@ const router = new createBrowserRouter([
   {
     path: "/help",
     element: <Help/>
-  }
+  },
+  {
+    path: "/create-campaign",
+    element: <CreateCampaign/>,
+  },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
