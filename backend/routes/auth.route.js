@@ -14,5 +14,7 @@ router.use(function(req, res, next) {
 
 
 router.post("/api/auth/signin", controller.signin);
+router.post("/api/auth/signup", controller.signUp);
+
 
 module.exports = router;
