@@ -59,6 +59,9 @@ export default function App() {
                     <NavLink to="/create-campaign" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                         Create Campaign
                     </NavLink>
+                    <NavLink to="/view-campaign" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                        View Campaign
+                    </NavLink>
                     <button onClick={handleLogout}>Sign out</button> 
                 </nav>
             </div>

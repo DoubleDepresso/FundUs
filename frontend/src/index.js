@@ -8,6 +8,8 @@ import SignUp from './pages/SignUp';
 import ListOfCharities from './pages/ListOfCharities';
 import Help from './pages/Help';
 import CreateCampaign from './pages/CreateCampaign';
+import EditCampaign from './pages/EditCampaign';
+import ViewCampaign from './pages/ViewCampaign(draft)';
 
 
 const router = new createBrowserRouter([
@@ -34,6 +36,14 @@ const router = new createBrowserRouter([
   {
     path: "/create-campaign",
     element: <CreateCampaign/>,
+  },
+  {
+    path: "/view-campaign",
+    element: <ViewCampaign/>,
+  },
+  {
+    path: "/edit-campaign/:campaignId",
+    element: <EditCampaign/>,
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

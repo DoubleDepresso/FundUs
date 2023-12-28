@@ -136,7 +136,6 @@ export default function CreateCampaign() {
                 value={endDate}/><br/>
                 <input type="submit" />
             </form>
-            <Link to="/sign-up">Don't have an account yet?</Link>
         </div>
     )
 }

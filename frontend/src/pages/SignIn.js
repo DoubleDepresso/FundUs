@@ -15,6 +15,7 @@ async function SigninUser(credentials) {
         }
     })
     .then(data => {
+        console.log(data)
         localStorage.setItem("token", JSON.stringify(data.accessToken));
         localStorage.setItem("user", JSON.stringify(data));
         return data;

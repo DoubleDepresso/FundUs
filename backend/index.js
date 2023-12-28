@@ -71,7 +71,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/", authRouter);
-app.use("/", campaignRouter);
+app.use("/api/campaign", campaignRouter);
 
 app.listen(2222, () => {
     console.log("Connected!")

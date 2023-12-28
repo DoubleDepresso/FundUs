@@ -13,6 +13,9 @@ router.use(function(req, res, next) {
 
 
 
-router.post("/api/campaign/create-campaign", controller.createCampaign);
+router.post("/create-campaign", controller.createCampaign);
+router.put("/edit-campaign", controller.editCampaign);
+router.get("/get-campaign-by-hostId/:hostId", controller.getCampaignByHostId);
+router.get("/get-campaign-by-campaignId/:campaignId", controller.getCampaignByCampaignId);
 
 module.exports = router;

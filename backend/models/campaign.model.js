@@ -4,6 +4,7 @@ module.exports = (sequelize, Sequelize) => {
     const Campaign = sequelize.define("campaigns", {
         name: {
             type: Sequelize.STRING,
+            allowNull: false,
         },
         location:{ 
             type: Sequelize.STRING,
@@ -28,6 +29,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         goal: {
             type: Sequelize.INTEGER,
+            allowNull: false,
         },
     },
     {
