@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { useState } from "react";
+import { Form } from "react-router-dom";
+import "../styles/Authentication.css";
 
 const url = 'http://localhost:2222/api/auth/signin';
 async function SigninUser(credentials) {
@@ -46,15 +48,24 @@ export default function SignIn() {
     }
     return (
         <div>
-            <NavBar/>
+            <div>
+                <NavBar/>
+            </div>
+            <div>
             <h1>Sign in</h1>
-            <form onSubmit={handleSubmit}>
-                <label> Username: </label> <br/>
-                <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
-                <label>Password:</label><br/>
-                <input type="text" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
-                <input type="submit" />
-            </form>
+                {/* Restructure form */}
+                <form onSubmit={handleSubmit}>
+                    <div id="form-input">
+                        <label htmlFor="username"> Username:</label><br/>
+                        <input id="username" type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
+                    </div>
+                    <div id="form-input">
+                        <label htmlFor="password">Password:</label><br/>
+                        <input id="password" type="text" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
+                    </div>
+                    <input id="btn" type="submit" />
+                </form>
+            </div>
             <Link to="/sign-up">Don't have an account yet?</Link>
         </div>
     )
