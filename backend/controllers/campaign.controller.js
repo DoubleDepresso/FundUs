@@ -41,12 +41,15 @@ exports.editCampaign = (req, res) => {
 
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
+        attributes: ["name", "location", "type", "startDate", "endDate", "goal"],
         where: {
-            hostId : req.params.hostId
+            hostId : req.params.hostId,
+            available: true,
         }
     })
     .then((records) => {
-        res.status(200).send({records});
+        console.log(records);
+        res.status(200).send({data: records});
     })
     .catch(error => {
         res.status(404).send({success: false, message: error.message})
