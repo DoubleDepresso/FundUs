@@ -50,7 +50,6 @@ exports.getCampaignByHostId = (req, res) =>  {
         }
     })
     .then((records) => {
-        console.log(records);
         res.status(200).send({data: records});
     })
     .catch(error => {
@@ -87,5 +86,22 @@ exports.donateItem = (req, res) => {
         memberId: req.body.memberId,
         campaignId: req.body.campaignId,
     })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({success: false, message: error.message})
+    });
     res.status(200).send({success: true, message: "Item is donated"})
 }
+
+exports.deleteCampaign = (req, res) => {
+    Campaign.destroy({
+        where: {
+           id : parseInt(req.params.campaignId)
+        }
+    }).then(deleted => {
+        res.status(200).send({success: true, message: `${deleted} is deleted!`})
+    })
+    .catch(err => {
+        res.status(400).send({success: false, message: err.message})
+    })
+} 

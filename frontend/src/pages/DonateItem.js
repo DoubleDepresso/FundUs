@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 async function submitForm(values) {
     return fetch("http://localhost:2222/api/campaign/donate-item", {
@@ -14,7 +14,7 @@ async function submitForm(values) {
         }
     })
     .catch(error => {
-        console.error(error);
+        alert(error)
     });
 };
 export default function DonateItem() {
@@ -26,17 +26,11 @@ export default function DonateItem() {
     const [description, setDescription] = useState("");
     const [pickupDate,setPickupDate] = useState("");
     const [pickupLocation, setPickupLocation] = useState("");
-    const [pickupStatus, setPickupStatus] = useState(false);
-    const [other, setOther] = useState("");
     const navigate = useNavigate();
-
-
-    console.log(type, other)
+    
     const handleSubmit = async e => {
         e.preventDefault();
-        if (type === "Other") {
-            setType(other);
-        }
+        const pickupStatus = false;
         const response = await submitForm({
             campaignId,
             memberId,
@@ -49,7 +43,7 @@ export default function DonateItem() {
             pickupStatus,
         });
         if (response.success) {
-            alert("The item is waited to lick up!");
+            alert("The item is waited to pick up!");
             navigate("/view-campaign");
         }
 
@@ -70,7 +64,7 @@ export default function DonateItem() {
                     checked={type === 'Clothing'}
                     onChange={e => setType(e.target.value)}
                 />
-                <label htmlFor="condition1">Clothing </label><br/>
+                <label htmlFor="type1">Clothing </label><br/>
                 <input
                     type="radio"
                     id="type2"
@@ -110,9 +104,7 @@ export default function DonateItem() {
                     checked={type === "Other"}
                     onChange={e => setType(e.target.value)}
                 />
-                <label htmlFor="type5">Other:
-                    <input type="text" onChange={e => setOther(e.target.value)}/>
-                </label><br/>
+                <label htmlFor="type5">Other</label><br/>
                 {/*Condition*/}
                 <label>Condition: </label> <br/>
                 <input
@@ -161,7 +153,6 @@ export default function DonateItem() {
 
                 <input type="submit" />
             </form>
-            <Link to="/create-campaign">You want to create new campaign?</Link>
         </>
     )
 }
