@@ -10,7 +10,8 @@ async function fetchCampaign(hostId, setCampaigns) {
             console.error(response.status);
         }
         const result = await response.json();
-        setCampaigns(result.records);
+        console.log(result)
+        setCampaigns(result.data);
     } catch (error) {
         console.log(error)
     }
@@ -23,6 +24,7 @@ export default function ViewCampaign() {
     
     useEffect(() => {
         fetchCampaign(hostId, setCampaigns);
+        console.log(campaigns)
     }, [])
     return (
         <div>
@@ -36,6 +38,7 @@ export default function ViewCampaign() {
                                     return (<li>{key} : {value}</li>)
                                 })}
                                 <Link to={`/edit-campaign/${campaign.id}`}>Edit</Link>
+                                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
                             </>
                         )}
                     </ul>

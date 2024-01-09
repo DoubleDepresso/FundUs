@@ -1,5 +1,7 @@
 const db = require("../models");
 const Campaign = db.campaign;
+const Item = db.item;
+
 
 exports.createCampaign = (req, res) => {
     Campaign.create({
@@ -41,7 +43,7 @@ exports.editCampaign = (req, res) => {
 
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
-        attributes: ["name", "location", "type", "startDate", "endDate", "goal"],
+        attributes: ["id", "name", "location", "type", "startDate", "endDate", "goal"],
         where: {
             hostId : req.params.hostId,
             available: true,
@@ -72,3 +74,18 @@ exports.getCampaignByCampaignId = (req, res) =>  {
     });
 
 };
+
+exports.donateItem = (req, res) => {
+    Item.create({
+        name: req.body.name,
+        type: req.body.type,
+        condition: req.body.condition,
+        pickupDate: req.body.pickupDate,
+        pickupLocation: req.body.pickupLocation,
+        pickupStatus: req.body.pickupStatus,
+        description: req.body.description,
+        memberId: req.body.memberId,
+        campaignId: req.body.campaignId,
+    })
+    res.status(200).send({success: true, message: "Item is donated"})
+}
