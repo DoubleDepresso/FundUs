@@ -1,11 +1,13 @@
 const db = require("../models");
 const config = require("../config/secretKey.config");
+const { Op } = require('sequelize'); //npm install sequelize
 
 const Member = db.member;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+// Sign-in features
 exports.signin = (req, res) => {
     console.log(req.body)
     Member.findOne({
@@ -42,5 +44,63 @@ exports.signin = (req, res) => {
             updated: member.updated,
             accessToken: token
         });
+    });
+};
+
+// Sign-up features
+exports.signUp = (req, res) => {
+    //check if username, email and phone number already exists
+    Member.findOne({
+        where: {
+            [Op.or]: [
+                { username: req.body.username},
+                { email: req.body.email},
+                { phone: req.body.phone},
+                { verification: req.body.verification}
+            ]
+        }
+    })
+    .then(member => {
+        if (member) {
+            // return field that input already exists
+            if (member.username.toLowerCase() === req.body.username.toLowerCase()) {
+                return res
+                .status(409)
+                .json({ field: "username" });
+
+            } else if (member.email.toLowerCase() === req.body.email.toLowerCase()) {
+                return res
+                .status(409)
+                .json({ field: "email" });
+
+            } else if (member.phone === req.body.phone) {
+                return res
+                .status(409)
+                .json({ field: "phone" });
+
+            } else if (member.verification === req.body.verification) {
+                return res
+                .status(409)
+                .json({ field: "verification" });
+            }
+        }
+
+        try {
+            // Create new user
+            const input = req.body;
+            Member.create({
+                name: input.name,
+                username: input.username,
+                password: input.password,
+                address: input.address,
+                phone: input.phone,
+                email: input.email,
+                verification: input.verification
+            })
+        } catch (error) {
+            console.error(error);
+        }
+
+        return res.status(200).send({ message: 'Sign up successful' }); 
     });
 };
