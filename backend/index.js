@@ -7,6 +7,7 @@ const mysql = require('mysql2/promise');
 const Member = db.member;
 const Campaign = db.campaign;
 const Transaction = db.transaction;
+const Item = db.item;
 const memberData = require("./data/member.data");
 const campaignData = require("./data/campaign.data")
 const authRouter = require("./routes/auth.route");
@@ -49,7 +50,30 @@ Transaction.belongsTo(Campaign, {
     allowNull: false,
   },
 });
-
+Campaign.hasMany(Item, {
+  foreignKey: {
+    name: "campaignId",
+    allowNull: false,
+  }
+});
+Item.belongsTo(Campaign, {
+  foreignKey: {
+    name: "campaignId",
+    allowNull: false,
+  }
+});
+Member.hasMany(Item, {
+  foreignKey: {
+    name: "memberId",
+    allowNull: false,
+  }
+});
+Item.belongsTo(Member, {
+  foreignKey: {
+    name: "memberId",
+    allowNull: false,
+  }
+});
 // create database
 mysql.createConnection({
   host: "localhost",

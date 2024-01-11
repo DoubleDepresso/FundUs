@@ -1,5 +1,3 @@
-const { STRING } = require("sequelize");
-
 module.exports = (sequelize, Sequelize) => {
     const Campaign = sequelize.define("campaigns", {
         name: {
@@ -9,9 +7,6 @@ module.exports = (sequelize, Sequelize) => {
         location:{ 
             type: Sequelize.STRING,
         },
-        // host: {
-        //     type: Sequelize.STRING //should be memberID
-        // },
         type: {
             type: Sequelize.STRING,
         },

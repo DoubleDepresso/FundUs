@@ -1,5 +1,7 @@
 const db = require("../models");
 const Campaign = db.campaign;
+const Item = db.item;
+
 
 exports.createCampaign = (req, res) => {
     Campaign.create({
@@ -41,12 +43,14 @@ exports.editCampaign = (req, res) => {
 
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
+        attributes: ["id", "name", "location", "type", "startDate", "endDate", "goal"],
         where: {
-            hostId : req.params.hostId
+            hostId : req.params.hostId,
+            available: true,
         }
     })
     .then((records) => {
-        res.status(200).send({records});
+        res.status(200).send({data: records});
     })
     .catch(error => {
         res.status(404).send({success: false, message: error.message})
@@ -69,3 +73,35 @@ exports.getCampaignByCampaignId = (req, res) =>  {
     });
 
 };
+
+exports.donateItem = (req, res) => {
+    Item.create({
+        name: req.body.name,
+        type: req.body.type,
+        condition: req.body.condition,
+        pickupDate: req.body.pickupDate,
+        pickupLocation: req.body.pickupLocation,
+        pickupStatus: req.body.pickupStatus,
+        description: req.body.description,
+        memberId: req.body.memberId,
+        campaignId: req.body.campaignId,
+    })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({success: false, message: error.message})
+    });
+    res.status(200).send({success: true, message: "Item is donated"})
+}
+
+exports.deleteCampaign = (req, res) => {
+    Campaign.destroy({
+        where: {
+           id : parseInt(req.params.campaignId)
+        }
+    }).then(deleted => {
+        res.status(200).send({success: true, message: `${deleted} is deleted!`})
+    })
+    .catch(err => {
+        res.status(400).send({success: false, message: err.message})
+    })
+} 
