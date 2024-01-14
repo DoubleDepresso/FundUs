@@ -24,7 +24,7 @@ exports.editCampaign = (req, res) => {
         name: req.body.name,
         location: req.body.location,
         type: req.body.type,
-        available: req.body.available,
+        available: false,
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,

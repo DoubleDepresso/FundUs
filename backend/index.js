@@ -97,7 +97,7 @@ app.use(cors());
 
 app.use("/", authRouter);
 app.use("/api/campaign", campaignRouter);
-app.use.use("/api/member", memberRouter);
+app.use("/api/member", memberRouter);
 
 app.listen(2222, () => {
     console.log("Connected!")
