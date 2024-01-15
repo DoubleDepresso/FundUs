@@ -3,9 +3,9 @@ const config = require("../config/db.config");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize({
     database: "FundUs",
-    username: "root",
-    password: "root",
-    host: "localhost",
+    username: "rmit_student",
+    password: "521kimma",
+    host: "18.141.201.175",
     dialect: "mysql",
 });
 

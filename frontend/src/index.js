@@ -11,7 +11,8 @@ import CreateCampaign from './pages/CreateCampaign';
 import EditCampaign from './pages/EditCampaign';
 import ViewCampaign from './pages/ViewCampaign(draft)';
 import DonateItem from './pages/DonateItem';
-
+import ViewMemberProfile from './pages/ViewMemberProfile';
+import EditProfile from './pages/EditProfile';
 
 const router = new createBrowserRouter([
   {
@@ -49,6 +50,14 @@ const router = new createBrowserRouter([
   {
     path: "/donate-item/:campaignId",
     element: <DonateItem/>,
+  },
+  {
+    path: "/view-profile",
+    element: <ViewMemberProfile/>,
+  },
+  {
+    path: "/edit-profile/:memberId",
+    element: <EditProfile/>
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

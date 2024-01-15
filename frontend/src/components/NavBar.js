@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../assets/sampleLogo.png"
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function App() {
     const [searchValue, setSearchValue] = useState("");
     const [token, setToken] = useState("");
-
+    const navigate = useNavigate();
     // check if token is in localStorage / src: https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/
     useEffect(() => {
         const loggined = localStorage.getItem("token");
@@ -18,6 +18,7 @@ export default function App() {
     const handleLogout = () => {
         setToken("");
         localStorage.clear();
+        navigate("/")
     }
     
     if (!token) {
@@ -50,7 +51,7 @@ export default function App() {
                     <NavLink to="/list-of-charities" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                         List of Charities
                     </NavLink>
-                    <NavLink to="/user-profile" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                    <NavLink to="/view-profile" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                         My profile
                     </NavLink>
                     <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>

@@ -23,7 +23,6 @@ async function CreateCampaignUser(values) {
 export default function CreateCampaign() {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
-    const [isAvailable, setIsAvailable] = useState(false);
     const [description, setDescription] = useState("");
     const [startDate,setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -36,6 +35,8 @@ export default function CreateCampaign() {
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
+        console.log(hostId)
+        console.log("submit")
         e.preventDefault();
         let type;
         let available;
@@ -49,9 +50,8 @@ export default function CreateCampaign() {
             alert("You must select the type of campaign");
         };
 
-        if (isAvailable) {
-            available = true;
-        }
+        available = false;
+        
         const response = await CreateCampaignUser({
             name,
             hostId,
@@ -65,15 +65,7 @@ export default function CreateCampaign() {
         });
         if (response.success) {
             alert("Your campaign is created successfully!");
-            setName("");
-            setDescription("");
-            setLocation("");
-            setGoal(0);
-            setStartDate("");
-            setEndDate("");
-            setIsAvailable(false);
-            setIncludeItem(false);
-            setIncludeMoney(false);
+            navigate("/view-campaign");
         }
     };
     return (
@@ -107,12 +99,6 @@ export default function CreateCampaign() {
                     }}/>
                 <label htmlFor="type2">Item</label><br></br>
                 
-                <label htmlFor="available">Available (Will it be ready to donate now?):</label>
-                <input 
-                    type="checkbox" 
-                    id="available" value="Available"
-                    checked={isAvailable}
-                    onChange={e => setIsAvailable(e.target.checked)}/><br/>
                 
                 <label>Description:</label><br/>
                 <textarea 

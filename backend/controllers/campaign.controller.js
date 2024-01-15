@@ -4,6 +4,7 @@ const Item = db.item;
 
 
 exports.createCampaign = (req, res) => {
+    console.log('Request Body:', req.body);
     Campaign.create({
         name: req.body.name,
         hostId: req.body.hostId,
@@ -14,8 +15,12 @@ exports.createCampaign = (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         goal: req.body.goal,
+    }).then(() => {
+        res.status(200).send({success: true, message: "Item is donated"})
     })
-    res.status(200).send({success: true, message: "Your campaign is created successfully!"})
+    .catch(error => {
+        res.status(404).send({success: false, message: error.message})
+    })
     
 };
 
