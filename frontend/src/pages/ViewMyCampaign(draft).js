@@ -32,7 +32,7 @@ async function DeleteCampaign(campaignId) {
 }
 
 
-export default function ViewCampaign() {
+export default function ViewMyCampaign() {
     const [campaigns, setCampaigns] = useState(null);
     const hostId = JSON.parse(localStorage.getItem("user")).id;
 
@@ -67,23 +67,31 @@ export default function ViewCampaign() {
     return (
         <div>
             <NavBar/>
-            <h1>Your Campaigns</h1>
+            <h1>My Campaigns</h1>
                 {campaigns != null && Object.keys(campaigns).length > 0 ? (
                     <ul>
                         { Object.entries(campaigns).map(([index, campaign]) => 
                             <>  
-                                {Object.entries(campaign).map(([key, value]) => {
-                                    return (<li key={key}>{key} : {value}</li>)
-                                })}
+                                <li>Campaign's Name: {campaign.name}</li>
+                                <li>Location: {campaign.location}</li>
+                                <li>Goal: {campaign.goal}</li>
+                                <li>Start: {campaign.startDate.split("T")[0]}</li>
+                                <li>End: {campaign.endDate.split("T")[0]}</li>
                                 <Link to={`/edit-campaign/${campaign.id}`}>Edit</Link>
-                                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+                                {campaign.physicalDonation === true && (
+                                    <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+                                )}
+                                {campaign.physicalDonation !== true && (
+                                    <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
+                                )}
                                 <button onClick={() => handleDelete(campaign.id)}>Delete Campaign</button>
                             </>
                         )}
                     </ul>
                 ) : (
                     <p>There is no campaign to display.</p>
-                )}
+            )}
+            <Link to={"/create-campaign"}>Create a new campaign</Link>
         </div>
     )
     

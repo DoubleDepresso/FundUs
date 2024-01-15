@@ -11,5 +11,7 @@ router.get("/get-campaign-by-hostId/:hostId", controller.getCampaignByHostId);
 router.get("/get-campaign-by-campaignId/:campaignId", controller.getCampaignByCampaignId);
 router.post("/donate-item", controller.donateItem);
 router.delete("/delete-campaign/:campaignId", controller.deleteCampaign);
+router.post("/donate-money", controller.donateMoney);
+
 
 module.exports = router;

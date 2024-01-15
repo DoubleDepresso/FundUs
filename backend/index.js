@@ -3,13 +3,13 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser")
 const db = require("./models")
-// const mysql = require('mysql2/promise');
-// const Member = db.member;
-// const Campaign = db.campaign;
-// const Transaction = db.transaction;
-// const Item = db.item;
-// const memberData = require("./data/member.data");
-// const campaignData = require("./data/campaign.data")
+const mysql = require('mysql2/promise');
+const Member = db.member;
+const Campaign = db.campaign;
+const Transaction = db.transaction;
+const Item = db.item;
+const memberData = require("./data/member.data");
+const campaignData = require("./data/campaign.data")
 const authRouter = require("./routes/auth.route");
 const campaignRouter = require("./routes/campaign.route");
 const memberRouter = require("./routes/member.route");
@@ -41,13 +41,13 @@ const memberRouter = require("./routes/member.route");
 // });
 // Campaign.hasMany(Transaction, {
 //   foreignKey: {
-//     name: "campaginId",
+//     name: "campaignId",
 //     allowNull: false,
 //   },
 // });
 // Transaction.belongsTo(Campaign, {
 //   foreignKey: {
-//     name: "campaginId",
+//     name: "campaignId",
 //     allowNull: false,
 //   },
 // });
@@ -75,12 +75,10 @@ const memberRouter = require("./routes/member.route");
 //     allowNull: false,
 //   }
 // });
-// create database
+// connect to database
 db.sequelize.sync({force: false}).then(() => {
-  console.log('Connect to database!');
+  console.log("Connect to database!")
 });
-
-
 app.use(bodyParser.json());
 app.use(cors());
 

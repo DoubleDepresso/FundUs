@@ -9,8 +9,8 @@ module.exports = (sequelize, Sequelize) => {
         location:{ 
             type: Sequelize.STRING,
         },
-        type: {
-            type: Sequelize.STRING,
+        physicalDonation: {
+            type: Sequelize.BOOLEAN,
         },
         available: {
             type: Sequelize.BOOLEAN,
