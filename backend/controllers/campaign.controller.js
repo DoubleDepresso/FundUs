@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const db = require("../models");
 const Campaign = db.campaign;
 const Item = db.item;
@@ -105,3 +107,72 @@ exports.deleteCampaign = (req, res) => {
         res.status(400).send({success: false, message: err.message})
     })
 } 
+
+exports.getSortedCampaign = (req, res) =>  {
+    const { current = 0, sorting = '' } = req.query;
+
+    const [field, direction] = sorting.split(',');
+    const limit = 2;
+
+    Campaign.findAll({
+        order: [[field, direction]],
+        offset: parseInt(current), 
+        limit: parseInt(limit),
+    })
+    .then((records) => {
+        res.status(200).send({ success: true, data: records });
+    })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({ success: false, message: error.message })
+    });
+};
+
+exports.getKeywordSearch = (req, res) =>  {
+    var { keyword = ''} = req.query;
+    keyword = keyword.toLowerCase();
+
+    Campaign.findAll({
+        where: {
+            available: true,
+            }
+        })
+    .then((records) => {
+        const keywordSearch = records.filter(record => 
+            record.name.toLowerCase().includes(keyword) || 
+            (record.description.toLowerCase().includes(keyword)));
+
+        return keywordSearch;
+    })
+    .then((records) => {
+        res.status(200).send({ success: true, data: records });
+    })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({ success: false, message: error.message })
+    });
+};
+
+exports.getLocationSearch = (req, res) =>  {
+    var { location = 'seed' } = req.query;
+    location = location.toLowerCase();
+
+    Campaign.findAll({
+        where: {
+            available: true,
+            }
+        })
+    .then((records) => {
+        const locationSeach = records.filter(record => 
+            record.location.toLowerCase().includes(location));
+
+        return locationSeach;
+    })
+    .then((records) => {
+        res.status(200).send({ success: true, data: records });
+    })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({ success: false, message: error.message })
+    });
+};
