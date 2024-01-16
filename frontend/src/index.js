@@ -14,6 +14,8 @@ import DonateItem from './pages/DonateItem';
 import ViewMemberProfile from './pages/ViewMemberProfile';
 import EditProfile from './pages/EditProfile';
 import DonateMoney from './pages/DonateMoney';
+import Search from './pages/SearchPage';
+
 
 const router = new createBrowserRouter([
   {
@@ -63,6 +65,10 @@ const router = new createBrowserRouter([
   {
     path: "/donate-money/:campaignId",
     element: <DonateMoney/>,
+  },
+  {
+    path: "/search-page",
+    element: <Search/>,
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
