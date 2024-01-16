@@ -26,7 +26,7 @@ export default function EditProfile() {
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [verification, setVerification] = useState("");
-
+    const [navigate, setNavigate] = useNavigate();
     const [member, setMember] = useState(null);
 
 

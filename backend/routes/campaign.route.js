@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post("/create-campaign", controller.createCampaign);
 router.put("/edit-campaign", controller.editCampaign);
+router.get("/get-ongoing-campaign", controller.getOngoingCampaign);
 router.get("/get-campaign-by-hostId/:hostId", controller.getCampaignByHostId);
 router.get("/get-campaign-by-campaignId/:campaignId", controller.getCampaignByCampaignId);
 router.post("/donate-item", controller.donateItem);

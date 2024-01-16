@@ -46,9 +46,24 @@ exports.editCampaign = (req, res) => {
     });
 };
 
+exports.getOngoingCampaign = (req, res) =>  {
+    Campaign.findAll({
+        where: {
+            available: true,
+        }
+    })
+    .then((records) => {
+        console.log(records);
+        res.status(200).send({data: records});
+    })
+    .catch(error => {
+        res.status(404).send({success: false, message: error.message})
+    });
+
+};
+
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
-        attributes: ["id", "name", "location", "physicalDonation", "startDate", "endDate", "goal"],
         where: {
             hostId : req.params.hostId,
             available: true,
