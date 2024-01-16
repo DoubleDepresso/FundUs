@@ -13,8 +13,8 @@ router.put("/edit-campaign", controller.editCampaign);
 router.get("/get-campaign-by-hostId/:hostId", controller.getCampaignByHostId);
 router.get("/get-campaign-by-campaignId/:campaignId", controller.getCampaignByCampaignId);
 router.get("/get-sorted-campaign", controller.getSortedCampaign);
-router.get("/get-keyword-search", controller.getKeywordSearch);
-router.get("/get-location-search", controller.getLocationSearch);
+
+router.get("/get-search-result", controller.getSearchResult);
 
 
 

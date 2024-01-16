@@ -5,7 +5,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 const CampaignList = () => {
   const API = 'http://localhost:2222/api/campaign//get-sorted-campaign';
   const [campaigns, setCampaigns] = useState([]);
-  const [current, setCurrent] = useState(null);
   const [sorting, setSorting] = useState(null);
   const defaultSorting = 'startDate,DESC'; // default sorting: by start date descending
 
@@ -25,7 +24,6 @@ const CampaignList = () => {
         const campaignList = campaignData.data;
         if (campaignList.length > 0) { // Check if there are any campaigns in the campaignList
           setCampaigns(campaignList);
-          setCurrent(campaignList.length); // Set current to the length of the campaignList for offset query
         }
       })
       .catch(error => {

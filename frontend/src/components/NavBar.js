@@ -38,6 +38,9 @@ export default function App() {
                 <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                     Help
                 </NavLink>
+                <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                    Search
+                </NavLink>
             </nav>
         </div>
         )
@@ -61,6 +64,9 @@ export default function App() {
                     </NavLink>
                     <NavLink to="/view-campaign" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
                         View Campaign
+                    </NavLink>
+                    <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                        Search
                     </NavLink>
                     <button onClick={handleLogout}>Sign out</button> 
                 </nav>
