@@ -6,10 +6,18 @@ const router = express.Router();
 
 
 router.post("/create-campaign", controller.createCampaign);
+router.post("/donate-item", controller.donateItem);
+
 router.put("/edit-campaign", controller.editCampaign);
+
 router.get("/get-campaign-by-hostId/:hostId", controller.getCampaignByHostId);
 router.get("/get-campaign-by-campaignId/:campaignId", controller.getCampaignByCampaignId);
-router.post("/donate-item", controller.donateItem);
+router.get("/get-sorted-campaign", controller.getSortedCampaign);
+
+router.get("/get-search-result", controller.getSearchResult);
+
+
+
 router.delete("/delete-campaign/:campaignId", controller.deleteCampaign);
 
 module.exports = router;
