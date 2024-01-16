@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const db = require("../models");
 const Campaign = db.campaign;
 const Item = db.item;
-
+const Transaction = db.transaction;
 
 exports.createCampaign = (req, res) => {
     Campaign.create({
@@ -16,8 +16,12 @@ exports.createCampaign = (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         goal: req.body.goal,
+    }).then(() => {
+        res.status(200).send({success: true, message: "Item is donated"})
     })
-    res.status(200).send({success: true, message: "Your campaign is created successfully!"})
+    .catch(error => {
+        res.status(404).send({success: false, message: error.message})
+    })
     
 };
 
@@ -26,7 +30,7 @@ exports.editCampaign = (req, res) => {
         name: req.body.name,
         location: req.body.location,
         type: req.body.type,
-        available: req.body.available,
+        available: false,
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
@@ -45,7 +49,7 @@ exports.editCampaign = (req, res) => {
 
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
-        attributes: ["id", "name", "location", "type", "startDate", "endDate", "goal"],
+        attributes: ["id", "name", "location", "physicalDonation", "startDate", "endDate", "goal"],
         where: {
             hostId : req.params.hostId,
             available: true,
@@ -88,11 +92,13 @@ exports.donateItem = (req, res) => {
         memberId: req.body.memberId,
         campaignId: req.body.campaignId,
     })
+    .then(() => {
+        res.status(200).send({success: true, message: "Item is donated"})
+    })
     .catch(error => {
         console.log(error.message)
         res.status(404).send({success: false, message: error.message})
     });
-    res.status(200).send({success: true, message: "Item is donated"})
 }
 
 exports.deleteCampaign = (req, res) => {
@@ -106,7 +112,22 @@ exports.deleteCampaign = (req, res) => {
     .catch(err => {
         res.status(400).send({success: false, message: err.message})
     })
-} 
+};
+
+exports.donateMoney = (req, res) => {
+    Transaction.create({
+        account: req.body.account,
+        amount: req.body.amount,
+        memberId: req.body.memberId,
+        campaignId: req.body.campaignId,
+    }).then(() => {
+        res.status(200).send({success: true, message: "Transaction is donated"})
+    })
+    .catch(error => {
+        res.status(404).send({success: false, message: error.message})
+    })
+}
+
 
 exports.getSortedCampaign = (req, res) =>  {
     const { current = 0, sorting = '' } = req.query;

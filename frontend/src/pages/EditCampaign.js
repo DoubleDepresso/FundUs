@@ -21,7 +21,6 @@ export default function EditCampaign() {
     let id = (useParams().campaignId);
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
-    const [isAvailable, setIsAvailable] = useState(false);
     const [description, setDescription] = useState("");
     const [startDate,setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -58,7 +57,6 @@ export default function EditCampaign() {
             setGoal(campaign.goal || 0);
             setStartDate(campaign.startDate.split('T')[0] || "");
             setEndDate(campaign.endDate.split('T')[0] || "");
-            setIsAvailable(campaign.available || false);
             if (campaign.type === "Money, Item") {
                 setIncludeItem(true);
                 setIncludeMoney(true);
@@ -87,16 +85,11 @@ export default function EditCampaign() {
         } else {
             alert("You must select the type of campaign");
         };
-
-        if (isAvailable) {
-            available = true;
-        }
         const response = await submitForm({
             id,
             name,
             location, 
             type ,
-            available,
             description,
             startDate,
             endDate,
@@ -139,13 +132,6 @@ export default function EditCampaign() {
                                 setIncludeItem(e.target.checked);
                             }}/>
                         <label htmlFor="type2">Item</label><br></br>
-                        
-                        <label htmlFor="available">Available (Will it be ready to donate now?):</label>
-                        <input 
-                            type="checkbox" 
-                            id="available" value="Available"
-                            checked={isAvailable}
-                            onChange={e => setIsAvailable(e.target.checked)}/><br/>
                         
                         <label>Description:</label><br/>
                         <textarea 

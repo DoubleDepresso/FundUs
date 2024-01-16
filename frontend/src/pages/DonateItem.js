@@ -43,8 +43,8 @@ export default function DonateItem() {
             pickupStatus,
         });
         if (response.success) {
-            alert("The item is waited to pick up!");
-            navigate("/view-campaign");
+            alert("The item is waited to pick up! Thank you for your help");
+            navigate("/view-my-campaign");
         }
 
     }

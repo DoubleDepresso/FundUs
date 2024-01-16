@@ -9,8 +9,11 @@ import ListOfCharities from './pages/ListOfCharities';
 import Help from './pages/Help';
 import CreateCampaign from './pages/CreateCampaign';
 import EditCampaign from './pages/EditCampaign';
-import ViewCampaign from './pages/ViewCampaign(draft)';
+import ViewMyCampaign from './pages/ViewMyCampaign(draft)';
 import DonateItem from './pages/DonateItem';
+import ViewMemberProfile from './pages/ViewMemberProfile';
+import EditProfile from './pages/EditProfile';
+import DonateMoney from './pages/DonateMoney';
 import Search from './pages/SearchPage';
 
 
@@ -40,8 +43,8 @@ const router = new createBrowserRouter([
     element: <CreateCampaign/>,
   },
   {
-    path: "/view-campaign",
-    element: <ViewCampaign/>,
+    path: "/view-my-campaign",
+    element: <ViewMyCampaign/>,
   },
   {
     path: "/edit-campaign/:campaignId",
@@ -50,6 +53,18 @@ const router = new createBrowserRouter([
   {
     path: "/donate-item/:campaignId",
     element: <DonateItem/>,
+  },
+  {
+    path: "/view-profile",
+    element: <ViewMemberProfile/>,
+  },
+  {
+    path: "/edit-profile/:memberId",
+    element: <EditProfile/>
+  },
+  {
+    path: "/donate-money/:campaignId",
+    element: <DonateMoney/>,
   },
   {
     path: "/search-page",

@@ -14,84 +14,71 @@ const authRouter = require("./routes/auth.route");
 const campaignRouter = require("./routes/campaign.route");
 const memberRouter = require("./routes/member.route");
 
-// Association
-Member.hasMany(Campaign, {
-    foreignKey: {
-      name: "hostId",
-      allowNull: false,
-    },
+// // Association
+// Member.hasMany(Campaign, {
+//     foreignKey: {
+//       name: "hostId",
+//       allowNull: false,
+//     },
+// });
+// Campaign.belongsTo(Member, {
+//     foreignKey: {
+//       name: "hostId",
+//       allowNull: false,
+//     },
+// });
+// Member.hasMany(Transaction, {
+//   foreignKey: {
+//     name: "memberId",
+//     allowNull: false,
+//   }
+// });
+// Transaction.belongsTo(Member, {
+//   foreignKey: {
+//     name: "memberId",
+//     allowNull: false,
+//   }
+// });
+// Campaign.hasMany(Transaction, {
+//   foreignKey: {
+//     name: "campaignId",
+//     allowNull: false,
+//   },
+// });
+// Transaction.belongsTo(Campaign, {
+//   foreignKey: {
+//     name: "campaignId",
+//     allowNull: false,
+//   },
+// });
+// Campaign.hasMany(Item, {
+//   foreignKey: {
+//     name: "campaignId",
+//     allowNull: false,
+//   }
+// });
+// Item.belongsTo(Campaign, {
+//   foreignKey: {
+//     name: "campaignId",
+//     allowNull: false,
+//   }
+// });
+// Member.hasMany(Item, {
+//   foreignKey: {
+//     name: "memberId",
+//     allowNull: false,
+//   }
+// });
+// Item.belongsTo(Member, {
+//   foreignKey: {
+//     name: "memberId",
+//     allowNull: false,
+//   }
+// });
+// connect to database
+db.sequelize.sync({force: false}).then(() => {
+  console.log("Connect to database!")
 });
-Campaign.belongsTo(Member, {
-    foreignKey: {
-      name: "hostId",
-      allowNull: false,
-    },
-});
-Member.hasMany(Transaction, {
-  foreignKey: {
-    name: "memberId",
-    allowNull: false,
-  }
-});
-Transaction.belongsTo(Member, {
-  foreignKey: {
-    name: "memberId",
-    allowNull: false,
-  }
-});
-Campaign.hasMany(Transaction, {
-  foreignKey: {
-    name: "campaginId",
-    allowNull: false,
-  },
-});
-Transaction.belongsTo(Campaign, {
-  foreignKey: {
-    name: "campaginId",
-    allowNull: false,
-  },
-});
-Campaign.hasMany(Item, {
-  foreignKey: {
-    name: "campaignId",
-    allowNull: false,
-  }
-});
-Item.belongsTo(Campaign, {
-  foreignKey: {
-    name: "campaignId",
-    allowNull: false,
-  }
-});
-Member.hasMany(Item, {
-  foreignKey: {
-    name: "memberId",
-    allowNull: false,
-  }
-});
-Item.belongsTo(Member, {
-  foreignKey: {
-    name: "memberId",
-    allowNull: false,
-  }
-});
-// create database
-mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-}).then((connection) => {
-    connection
-      .query('CREATE DATABASE IF NOT EXISTS FundUs;')
-      .then(() => {
-        db.sequelize.sync({force: true}).then(() => {
-          memberData.initial(Member);
-          campaignData.initial(Campaign);
-        });
-      })
-})
-
-
 app.use(bodyParser.json());
 app.use(cors());
 

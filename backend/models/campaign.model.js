@@ -1,3 +1,5 @@
+const Member = require("./member.model");
+
 module.exports = (sequelize, Sequelize) => {
     const Campaign = sequelize.define("campaigns", {
         name: {
@@ -7,8 +9,8 @@ module.exports = (sequelize, Sequelize) => {
         location:{ 
             type: Sequelize.STRING,
         },
-        type: {
-            type: Sequelize.STRING,
+        physicalDonation: {
+            type: Sequelize.BOOLEAN,
         },
         available: {
             type: Sequelize.BOOLEAN,
@@ -26,6 +28,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
+        hostId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: Member, 
+                key: 'id', 
+            },
+        }
     },
     {
         tableName: "campaigns",

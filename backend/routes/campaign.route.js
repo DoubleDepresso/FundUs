@@ -19,5 +19,7 @@ router.get("/get-search-result", controller.getSearchResult);
 
 
 router.delete("/delete-campaign/:campaignId", controller.deleteCampaign);
+router.post("/donate-money", controller.donateMoney);
+
 
 module.exports = router;
