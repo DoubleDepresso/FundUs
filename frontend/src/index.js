@@ -15,7 +15,7 @@ import ViewMemberProfile from './pages/ViewMemberProfile';
 import EditProfile from './pages/EditProfile';
 import DonateMoney from './pages/DonateMoney';
 import Search from './pages/SearchPage';
-
+import ViewCampaignDetail from './pages/ViewCampaignDetail';
 
 const router = new createBrowserRouter([
   {
@@ -69,6 +69,10 @@ const router = new createBrowserRouter([
   {
     path: "/search-page",
     element: <Search/>,
+  },
+  {
+    path: "/view-campaign-detail/:campaignId",
+    element: <ViewCampaignDetail/>,
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

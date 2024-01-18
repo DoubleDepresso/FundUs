@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar"
 import { useEffect, useState } from "react";
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Link } from "react-router-dom";
 
 const CampaignList = () => {
   const API = 'http://localhost:2222/api/campaign//get-sorted-campaign';
@@ -28,7 +29,7 @@ const CampaignList = () => {
         if (newCampaignsList.length > 0) { // Check if there are any campaigns in the newCampaignList
           setCampaigns(prevCampaigns => [...prevCampaigns, ...newCampaignsList]); // Set campaigns to the old data in prevCampaigns and add newCampaignsList
           setCurrent(prevCurrent => prevCurrent + newCampaignsList.length); // Set current to the length of the prevCurrent + newCampaignList for offset query
-        } else {console.log('no more')} // disable the load more button when 'no more'
+        } else {alert('No more campaign to load.')} // disable the load more button when 'no more'
       })
       .catch(error => {
         console.error('Error fetching CampaignList data:', error);
@@ -69,7 +70,7 @@ const CampaignList = () => {
       <p>Sort by Goal</p>
       <button onClick={() => sortField('moneyGoal', 'DESC')}>DESC</button>
       <button onClick={() => sortField('moneyGoal', 'ASC')}>ASC</button>
-
+      
       <ul>
         {campaigns.map(campaign => (
           <li key={campaign.id}>
@@ -77,6 +78,17 @@ const CampaignList = () => {
             <p>Name: {campaign.name}</p>
             <p>Start Date: {campaign.startDate}</p>
             <p>Goal: {campaign.moneyGoal}</p>
+            <p>
+              {campaign.physicalDonation === true && (
+                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+              )}
+              {campaign.moneyDonation === true && (
+              <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
+              )}
+            </p>
+            <p>
+              <Link to={`/view-campaign-detail/${campaign.id}`}>More Detail</Link>
+            </p>
           </li>
         ))}
       </ul>

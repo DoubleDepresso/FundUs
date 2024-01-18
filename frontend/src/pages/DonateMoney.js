@@ -63,11 +63,11 @@ export default function DonateMoney() {
             <form onSubmit={handleSubmit}>
                 <label>Your Account: </label> <br/>
                 <input type="text" name="account" onChange={e => setAccount(e.target.value)} 
-                value={account}/><br/>
+                value={account} required/><br/>
                 
                 <label>Amount: </label><br/>
-                <input type="number" step="10000" name="amount" onChange={e => setAmount(e.target.value)} 
-                value={amount} min={0}/><br/>
+                <input type="number" name="amount" onChange={e => setAmount(e.target.value)} 
+                value={amount} min={0} required/><br/>
 
                 <input type="submit" />
             </form>

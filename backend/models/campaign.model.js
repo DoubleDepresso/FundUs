@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
         physicalDonation: {
             type: Sequelize.BOOLEAN,
         },
+        moneyDonation: {
+            type: Sequelize.BOOLEAN,
+        },
         available: {
             type: Sequelize.BOOLEAN,
         },
@@ -24,8 +27,12 @@ module.exports = (sequelize, Sequelize) => {
         endDate: {
             type: Sequelize.DATE,
         },
-        goal: {
+        moneyGoal: {
             type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        physicalGoal: {
+            type: Sequelize.STRING,
             allowNull: false,
         },
         hostId: {
