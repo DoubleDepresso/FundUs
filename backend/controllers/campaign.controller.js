@@ -4,20 +4,23 @@ const db = require("../models");
 const Campaign = db.campaign;
 const Item = db.item;
 const Transaction = db.transaction;
+const Member = db.member;
 
 exports.createCampaign = (req, res) => {
     Campaign.create({
         name: req.body.name,
         hostId: req.body.hostId,
         location: req.body.location,
-        type: req.body.type,
+        moneyDonation: req.body.includeMoney,
+        physicalDonation: req.body.includeItem,
         available: req.body.available,
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
-        goal: req.body.goal,
+        moneyGoal: req.body.moneyGoal,
+        physicalGoal: req.body.physicalGoal,
     }).then(() => {
-        res.status(200).send({success: true, message: "Item is donated"})
+        res.status(200).send({success: true, message: "Campaign is created"})
     })
     .catch(error => {
         res.status(404).send({success: false, message: error.message})
@@ -29,12 +32,14 @@ exports.editCampaign = (req, res) => {
     Campaign.update({
         name: req.body.name,
         location: req.body.location,
-        type: req.body.type,
+        moneyDonation: req.body.includeMoney,
+        physicalDonation: req.body.includeItem,
         available: false,
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
-        goal: req.body.goal,
+        moneyGoal: req.body.moneyGoal,
+        physicalGoal: req.body.physicalGoal,
     }, {
         where: {id : req.body.id}
     })
@@ -49,7 +54,7 @@ exports.editCampaign = (req, res) => {
 
 exports.getCampaignByHostId = (req, res) =>  {
     Campaign.findAll({
-        attributes: ["id", "name", "location", "physicalDonation", "startDate", "endDate", "goal"],
+        attributes: ["id", "name", "location", "physicalDonation", "moneyDonation", "startDate", "endDate", "physicalGoal", "moneyGoal"],
         where: {
             hostId : req.params.hostId,
             available: true,
@@ -68,6 +73,10 @@ exports.getCampaignByCampaignId = (req, res) =>  {
     Campaign.findAll({
         where: {
             id : parseInt(req.params.campaignId)
+        },
+        include: {
+            model: Member,
+            attribute: ["name"],
         }
     })
     .then((records) => {

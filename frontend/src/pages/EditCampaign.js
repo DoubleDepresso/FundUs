@@ -27,6 +27,8 @@ export default function EditCampaign() {
     const [goal, setGoal] = useState(0);
     const [includeMoney, setIncludeMoney] = useState(false);
     const [includeItem, setIncludeItem] = useState(false);
+    const [moneyGoal, setMoneyGoal] = useState(0);
+    const [physicalGoal, setPhysicalGoal] = useState("");
     const navigate = useNavigate();
     const [campaign, setCampaign] = useState(null);
 
@@ -54,66 +56,61 @@ export default function EditCampaign() {
             setName(campaign.name || "");
             setDescription(campaign.description || "");
             setLocation(campaign.location || "");
-            setGoal(campaign.goal || 0);
             setStartDate(campaign.startDate.split('T')[0] || "");
             setEndDate(campaign.endDate.split('T')[0] || "");
-            if (campaign.type === "Money, Item") {
-                setIncludeItem(true);
-                setIncludeMoney(true);
-            }
-            if (campaign.type === "Money") {
-                setIncludeItem(false);
-                setIncludeMoney(true);
-            }
-            if (campaign.type === "Item") {
-                setIncludeItem(false);
-                setIncludeMoney(true);
-            }
+            setIncludeItem(campaign.physicalDonation);
+            setIncludeMoney(campaign.moneyDonation);
+            setMoneyGoal(campaign.moneyGoal || 0);
+            setPhysicalGoal(campaign.physicalGoal || "")
         }
     }, [campaign])
 
     const handleSubmit = async e => {
         e.preventDefault();
-        let type;
-        let available;
-        if (includeItem && includeMoney) {
-            type = "Money, Item";
-        } else if (includeItem) {
-            type = "Item";
-        } else if (includeMoney) {
-            type = "Money";
+        if (!includeItem && !includeMoney) {
+            alert("Please choose the 'Type of Donation'!");
         } else {
-            alert("You must select the type of campaign");
-        };
-        const response = await submitForm({
-            id,
-            name,
-            location, 
-            type ,
-            description,
-            startDate,
-            endDate,
-            goal,
-        });
-        if (response.success) {
-            alert("The campaign is updated sucessfully!");
-            navigate("/view-campaign");
+            const response = await submitForm({
+                id,
+                name,
+                location, 
+                includeItem ,
+                includeMoney ,
+                description,
+                startDate,
+                endDate,
+                moneyGoal,
+                physicalGoal,
+            });
+            if (response.success) {
+                alert("The campaign is updated sucessfully!");
+                navigate("/view-my-campaign");
+            }
         }
-
     }
     return(
         <>
             <NavBar/>
+            <h1>Edit Campaign</h1>
             {campaign && (
                 <>
                     <form onSubmit={handleSubmit}>
                         <label>Name of Campaign: </label> <br/>
                         <input type="text" name="name" onChange={e => setName(e.target.value)} 
-                        value={name}/><br/>
+                        value={name} required/><br/>
                         
                         <label>Location:</label><br/>
                         <input type="text" name="location" onChange={e => setLocation(e.target.value)} 
-                        value={location}/><br/>
+                        value={location} required/><br/>
+                        
+                        <label>Description:</label><br/>
+                        <textarea 
+                            value={description} 
+                            onChange={e => setDescription(e.target.value)} 
+                            rows={5}
+                            cols={50}
+                            required
+                        /><br/>
                         
                         <label>Type of Donate (You can select more than 1):</label><br/>   
                         <input 
@@ -133,26 +130,29 @@ export default function EditCampaign() {
                             }}/>
                         <label htmlFor="type2">Item</label><br></br>
                         
-                        <label>Description:</label><br/>
-                        <textarea 
-                            value={description} 
-                            onChange={e => setDescription(e.target.value)} 
-                            rows={5}
-                            cols={50}
-                        /><br/>
-                        
-                        <label>Goal:</label><br/>
-                        <input type="number" name="goal" onChange={e => setGoal(e.target.value)} 
-                        value={goal} min={0}/><br/>
+                        {includeMoney && (
+                            <>
+                            <label>Goal (How much?):</label><br/>
+                            <input type="number" name="goal" onChange={e => setMoneyGoal(e.target.value)} 
+                            value={moneyGoal} min={0} placeholder="Enter The Goal" required/><br/>
+                            </>   
+                        )}
+                        {includeItem && (
+                            <>
+                                <label>Goal (What type of items?):</label><br/>
+                                <input type="text" name="goal" value={physicalGoal} 
+                                onChange={e => setPhysicalGoal(e.target.value)} placeholder="Enter the type of item" required/> <br/>
+                            </>    
+                        )}
 
                         <label>Start date:</label><br/>
                         <input type="date" name="startDate" onChange={e => setStartDate(e.target.value)} 
-                        value={startDate}/><br/>
+                        value={startDate} required/><br/>
 
                         <label>End date:</label><br/>
                         <input type="date" name="password" onChange={e => setEndDate(e.target.value)} 
                         value={endDate}/><br/>
-                        <input type="submit" />
+                        <input type="submit" required/>
                     </form>
                     <Link to="/create-campaign">You want to create new campaign?</Link>
                 </>

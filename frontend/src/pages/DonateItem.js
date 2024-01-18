@@ -31,22 +31,25 @@ export default function DonateItem() {
     const handleSubmit = async e => {
         e.preventDefault();
         const pickupStatus = false;
-        const response = await submitForm({
-            campaignId,
-            memberId,
-            name,
-            condition, 
-            type ,
-            pickupDate,
-            description,
-            pickupLocation,
-            pickupStatus,
-        });
-        if (response.success) {
-            alert("The item is waited to pick up! Thank you for your help");
-            navigate("/view-my-campaign");
+        if (type === "" || condition === "") {
+            alert("Please fill in the form!")
+        } else {
+            const response = await submitForm({
+                campaignId,
+                memberId,
+                name,
+                condition, 
+                type ,
+                pickupDate,
+                description,
+                pickupLocation,
+                pickupStatus,
+            });
+            if (response.success) {
+                alert("The item is waited to pick up! Thank you for your help");
+                navigate("/view-my-campaign");
+            }
         }
-
     }
     return(
         <>
@@ -54,7 +57,7 @@ export default function DonateItem() {
             <form onSubmit={handleSubmit}>
                 <label>Name of Item: </label> <br/>
                 <input type="text" name="name" onChange={e => setName(e.target.value)} 
-                value={name}/><br/>
+                value={name} required/><br/>
                 
                 <label>Type: </label><br/>
                 <input
@@ -135,7 +138,7 @@ export default function DonateItem() {
                 <label>Pickup date:</label><br/>
                 <input type="date" name="Pickup date" 
                     onChange={e => setPickupDate(e.target.value)} 
-                    value={pickupDate}
+                    value={pickupDate}  required
                 /><br/>
                 
                 <label>Description:</label><br/>
@@ -143,12 +146,13 @@ export default function DonateItem() {
                     type="text"
                     name="Description"
                     onChange={e => setDescription(e.target.value)}
+                    required
                 /><br/>
 
                 <label>Pickup location:</label><br/>
                 <input type="text" name="Pickup location" 
                     onChange={e => setPickupLocation(e.target.value)} 
-                    value={pickupLocation}
+                    value={pickupLocation}  required
                 /><br/>
 
                 <input type="submit" />
