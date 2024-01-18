@@ -21,7 +21,6 @@ const ViewMemberProfile = () => {
     const [transactionData, setTransactionData] = useState(null); 
     const memberId = JSON.parse(localStorage.getItem("user")).id;
 
-    
     useEffect(() => {
         fetchMemberProfile(memberId, setMemberProfile);
     }, [memberId])
@@ -31,7 +30,7 @@ const ViewMemberProfile = () => {
             .then(response => {
                 if (!response.ok) {
                     console.error(response.status);
-                    throw new Error('Network response was not ok');
+                    throw new Error('Fetcing data failed');
                 }
                 return response.json();
             })

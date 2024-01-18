@@ -14,7 +14,6 @@ const SearchPage = () => {
     // change searchField to reload useEffect
     const handleSearch = (event) => {
         event.preventDefault();
-    
         const formId = event.target.id;
         let keyword = '';
         let location = '';
@@ -46,7 +45,7 @@ const SearchPage = () => {
   
               if (newCampaignsList.length > 0) {
                   setCampaigns(prevCampaigns => [...prevCampaigns, ...newCampaignsList]);
-                  setCurrent(prevCurrent => prevCurrent + newCampaignsList.length);
+                  setCurrent(prevCurrent => prevCurrent + 1);
               } else {
                   alert('No more');
               }
@@ -67,7 +66,7 @@ const SearchPage = () => {
           const campaignList = campaignData.data;
           if (campaignList.length > 0) { // Check if there are any campaigns in the campaignList
             setCampaigns(campaignList);
-            setCurrent(campaignList.length); // Set current to the length of the campaignList for offset query
+            setCurrent(1); // Set current for pagination
           } else {alert('No campaigns found with the provided search')}
         })
         .catch(error => {
