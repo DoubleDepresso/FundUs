@@ -5,10 +5,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 const SearchPage = () => {
     const API = 'http://localhost:2222/api/campaign//get-search-result'
     const [campaigns, setCampaigns] = useState([]);
-    // const [keyword, setKeyword] = useState(null);
-    // const [location, setLocation] = useState(null);
     const [current, setCurrent] = useState(null);
-    // const [direction, setDirection] = useState(null);
     const [searchField, setSearchField] = useState(null);
 
     const defaultValue = '';
@@ -31,32 +28,33 @@ const SearchPage = () => {
         setSearchField(`${keyword},${location},${defaultValue},${defaultValue}`);
       };
   
-    // change sorting API
+    // change searchField API
     const searchBox = (keyword, location, direction, field) => {
         setSearchField(`${keyword},${location},${direction},${field}`);
     }
 
     const loadMoreCampaigns = async () => {
-        await fetch(API+`?current=${current}&searchField=${searchField || defaultSearchField}`) 
+      await fetch(API + `?current=${current}&searchField=${searchField || defaultSearchField}`)
           .then(response => {
-            if (!response.ok) {
-              throw new Error('Something went wrong while fetching campaign data');
-            }
-            return response.json();
+              if (!response.ok) {
+                  throw new Error('Something went wrong while fetching campaign data');
+              }
+              return response.json();
           })
           .then(campaignData => {
-            const newCampaignsList = campaignData.data;
-            
-            if (newCampaignsList.length > 0) { // Check if there are any campaigns in the newCampaignList
-              setCampaigns(prevCampaigns => [...prevCampaigns, ...newCampaignsList]); // Set campaigns to the old data in prevCampaigns and add newCampaignsList
-              setCurrent(prevCurrent => prevCurrent + newCampaignsList.length); // Set current to the length of the prevCurrent + newCampaignList for offset query
-            } else {alert('No more')} // disable the load more button when 'no more'
+              const newCampaignsList = campaignData.data;
+  
+              if (newCampaignsList.length > 0) {
+                  setCampaigns(prevCampaigns => [...prevCampaigns, ...newCampaignsList]);
+                  setCurrent(prevCurrent => prevCurrent + newCampaignsList.length);
+              } else {
+                  alert('No more');
+              }
           })
           .catch(error => {
-            console.error('Error fetching CampaignList data:', error);
+              console.error('Error fetching CampaignList data:', error);
           });
       };
-
     useEffect(() => {
       fetch(API+`?searchField=${searchField || defaultSearchField}`)
         .then(response => {
@@ -87,8 +85,8 @@ const SearchPage = () => {
           <h1>Search HERE</h1>
 
             <p>Sort by Goal</p>
-            <button onClick={() => searchBox('', '', 'DESC', 'goal')}>DESC</button>
-            <button onClick={() => searchBox('', '', 'ASC', 'goal')}>ASC</button>
+            <button onClick={() => searchBox('', '', 'DESC', 'moneyGoal')}>DESC</button>
+            <button onClick={() => searchBox('', '', 'ASC', 'moneyGoal')}>ASC</button>
 
             <p>Sort by Start Date</p>
             <button onClick={() => searchBox('', '', 'DESC', 'startDate')}>DESC</button>
@@ -112,7 +110,7 @@ const SearchPage = () => {
                     <p>id: {campaign.id}</p>
                     <p>Name: {campaign.name}</p>
                     <p>Start Date: {campaign.startDate}</p>
-                    <p>Goal: {campaign.goal}</p>
+                    <p>Goal: {campaign.moneyGoal}</p>
                     <p>Description: {campaign.description}</p>
                     <p>Location: {campaign.location}</p>
                 </li>

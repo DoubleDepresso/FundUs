@@ -68,8 +68,8 @@ const CampaignList = () => {
       <button onClick={() => sortField('startDate', 'ASC')}>ASC</button>
 
       <p>Sort by Goal</p>
-      <button onClick={() => sortField('goal', 'DESC')}>DESC</button>
-      <button onClick={() => sortField('goal', 'ASC')}>ASC</button>
+      <button onClick={() => sortField('moneyGoal', 'DESC')}>DESC</button>
+      <button onClick={() => sortField('moneyGoal', 'ASC')}>ASC</button>
       
       <ul>
         {campaigns.map(campaign => (
@@ -77,7 +77,7 @@ const CampaignList = () => {
             <p>id: {campaign.id}</p>
             <p>Name: {campaign.name}</p>
             <p>Start Date: {campaign.startDate}</p>
-            <p>Goal: {campaign.goal}</p>
+            <p>Goal: {campaign.moneyGoal}</p>
             <p>
               {campaign.physicalDonation === true && (
                 <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>

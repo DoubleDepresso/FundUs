@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar"
 import { useEffect, useState } from "react";
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Link } from "react-router-dom";
 
 const CampaignList = () => {
   const API = 'http://localhost:2222/api/campaign//get-sorted-campaign';
@@ -45,8 +44,8 @@ const CampaignList = () => {
       <button onClick={() => sortField('startDate', 'ASC')}>ASC</button>
 
       <p>Sort by Goal</p>
-      <button onClick={() => sortField('goal', 'DESC')}>DESC</button>
-      <button onClick={() => sortField('goal', 'ASC')}>ASC</button>
+      <button onClick={() => sortField('moneyGoal', 'DESC')}>DESC</button>
+      <button onClick={() => sortField('moneyGoal', 'ASC')}>ASC</button>
 
       <ul>
         {campaigns.map(campaign => (
@@ -54,33 +53,11 @@ const CampaignList = () => {
             <p>id: {campaign.id}</p>
             <p>Name: {campaign.name}</p>
             <p>Start Date: {campaign.startDate}</p>
-            <p>Goal: {campaign.goal}</p>
-            <p>
-              {campaign.physicalDonation === true && (
-                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
-              )}
-              {campaign.moneyDonation === true && (
-              <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
-              )}
-            </p>
-            <p>
-              <Link to={`/view-campaign-detail/${campaign.id}`}>More Detail</Link>
-            </p>
+            <p>Goal: {campaign.moneyGoal}</p>
           </li>
         ))}
       </ul>
-      <Link to={"/list-of-charities"}>More campaigns</Link>
-
-      <div>
-        <h1>Search HERE</h1>
-
-          <form>
-            <label for="search">Search:</label>
-            <input type="text" id="search" placeholder="Enter keywords..." required></input>
-            <button type="submit">Search</button>
-          </form>
-        
-      </div>
+      <button><a href='/list-of-charities'>SEE MORE GO TO THE LIST OF CHARI</a></button>
     </div>
   );
 };
