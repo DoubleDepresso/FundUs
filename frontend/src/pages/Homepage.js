@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar"
 import { useEffect, useState } from "react";
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Link } from "react-router-dom";
 
 const CampaignList = () => {
   const API = 'http://localhost:2222/api/campaign//get-sorted-campaign';
@@ -54,10 +55,21 @@ const CampaignList = () => {
             <p>Name: {campaign.name}</p>
             <p>Start Date: {campaign.startDate}</p>
             <p>Goal: {campaign.goal}</p>
+            <p>
+              {campaign.physicalDonation === true && (
+                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+              )}
+              {campaign.moneyDonation === true && (
+              <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
+              )}
+            </p>
+            <p>
+              <Link to={`/view-campaign-detail/${campaign.id}`}>More Detail</Link>
+            </p>
           </li>
         ))}
       </ul>
-      <button>SEE MORE GO TO THE LIST OF CHARI</button>
+      <Link to={"/list-of-charities"}>More campaigns</Link>
 
       <div>
         <h1>Search HERE</h1>

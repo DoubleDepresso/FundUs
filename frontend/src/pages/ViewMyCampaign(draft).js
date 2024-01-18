@@ -74,16 +74,11 @@ export default function ViewMyCampaign() {
                             <>  
                                 <li>Campaign's Name: {campaign.name}</li>
                                 <li>Location: {campaign.location}</li>
-                                <li>Goal: {campaign.goal}</li>
+                                {campaign.moneyDonation && <li>Goal: {campaign.moneyGoal} VND</li>}
+                                {campaign.physicalDonation && <li>Goal: {campaign.physicalGoal}</li>}
                                 <li>Start: {campaign.startDate.split("T")[0]}</li>
                                 <li>End: {campaign.endDate.split("T")[0]}</li>
                                 <Link to={`/edit-campaign/${campaign.id}`}>Edit</Link>
-                                {campaign.physicalDonation === true && (
-                                    <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
-                                )}
-                                {campaign.physicalDonation !== true && (
-                                    <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
-                                )}
                                 <button onClick={() => handleDelete(campaign.id)}>Delete Campaign</button>
                             </>
                         )}
