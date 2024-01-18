@@ -52,7 +52,7 @@ export default function SignIn() {
                 <label> Username: </label> <br/>
                 <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
                 <label>Password:</label><br/>
-                <input type="text" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
+                <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
                 <input type="submit" />
             </form>
             <Link to="/sign-up">Don't have an account yet?</Link>
