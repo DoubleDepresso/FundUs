@@ -3,13 +3,15 @@ import NavBar from "../components/NavBar";
 import { useState, useEffect } from "react";
 
 async function submitForm(values) {
-    return fetch("http://localhost:2222/api/member/edit-member", {
+    return await fetch('http://localhost:2222/api/member/edit-member', {
         method: "PUT",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(values)
     })
     .then(data => { 
         if (data.ok) {
+            return data.json();
+        } else if (data.status === 409) {
             return data.json();
         }
     })
@@ -28,7 +30,7 @@ export default function EditProfile() {
     const [verification, setVerification] = useState("");
 
     const [member, setMember] = useState(null);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData () {
@@ -47,6 +49,7 @@ export default function EditProfile() {
         };
         fetchData();
     }, []);
+
     useEffect(() => {
         if (member) {
             setName(member.name || "");
@@ -62,6 +65,7 @@ export default function EditProfile() {
     const handleSubmit = async e => {
         e.preventDefault();
         const response = await submitForm({
+            id,
             name,
             username,
             password,
@@ -70,19 +74,26 @@ export default function EditProfile() {
             address,
             verification
         });
-        if (response.success) {
+        if (response && response.success) {
             alert("Your information is updated sucessfully!");
             navigate("/view-profile");
+        } else if (response) {
+            const message = response.message;
+            alert(message);
+        } else {
+            console.log("Unexpected error format");
         }
-
     }
+    
     return(
         <>
             <NavBar/>
             <h1>Edit Profile</h1>
             {member && (
                 <>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>   
+                        <p>Username: {username}</p> 
+
                         <label>Name: </label> <br/>
                         <input type="text" name="name" onChange={e => setName(e.target.value)} 
                         value={name}/><br/>
@@ -92,25 +103,20 @@ export default function EditProfile() {
                         value={address}/><br/>
                         
                         <label>Phone:</label><br/>
-                        <input type="text" name="phone" onChange={e => setPhone(e.target.value)} 
+                        <input type="number" name="phone" onChange={e => setPhone(e.target.value)} 
                         value={phone}/><br/>
                         
-                        <label>Username:</label><br/>
-                        <input type="text" name="username" onChange={e => setUsername(e.target.value)} 
-                        value={username}/><br/>
-                        
                         <label>Password:</label><br/>
-                        <input type="text" name="phone" onChange={e => setPassword(e.target.value)} 
+                        <input type="password" name="phone" onChange={e => setPassword(e.target.value)} 
                         value={password}/><br/>
                         
                         <label>Email:</label><br/>
-                        <input type="text" name="email" onChange={e => setEmail(e.target.value)} 
+                        <input type="email" name="email" onChange={e => setEmail(e.target.value)} 
                         value={email}/><br/>
                         
-                        <label>Verification:</label><br/>
-                        <input type="text" name="verification" onChange={e => setVerification(e.target.value)} 
-                        value={verification}/><br/>
-                        <input type="submit" />
+                        <p>Verification: {verification}</p>
+
+                        <input type="submit"/>
                     </form>
                 </>
             )}
