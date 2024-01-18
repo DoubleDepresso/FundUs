@@ -171,7 +171,7 @@ exports.getSearchResult = (req, res) =>  {
 
     // Default values for direction and field
     direction = direction || 'DESC';
-    field = field || 'goal';
+    field = field || 'moneyGoal';
 
     const limit = 2;
 
@@ -200,14 +200,47 @@ exports.getSearchResult = (req, res) =>  {
         return keywordSearch;
     })
     .then((sortedSearch) => {
-        const endIndex = current + limit;
+        const startIndex = current * limit;
+        const endIndex = startIndex + limit;
 
         // return campaign with in the current to endIndex
-        const sortedCampaign = sortedSearch.slice(current, endIndex);
+        const sortedCampaign = sortedSearch.slice(startIndex, endIndex);
         return sortedCampaign;
     })
     .then((sortedCampaign) => {
         res.status(200).send({ success: true, data: sortedCampaign });
+    })
+    .catch(error => {
+        console.log(error.message)
+        res.status(404).send({ success: false, message: error.message })
+    });
+};
+
+exports.getFollowingCampaign = (req, res) =>  {
+    const {memberId = '' } = req.query;
+
+    if (memberId === '') {
+        res.status(404).send({ success: false, message: 'Member ID is required'});
+    };
+
+    Promise.all([
+        Transaction.findAll({
+            where: {
+                memberId: memberId,
+            },
+        }),
+        Item.findAll({
+            where: {
+                memberId: memberId,
+            },
+        }),
+    ])
+    .then(([transaction, items]) => {
+        res.status(200).send({
+            success: true,
+            transactionData: transaction,
+            itemData: items,
+        });
     })
     .catch(error => {
         console.log(error.message)
