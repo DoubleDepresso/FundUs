@@ -13,7 +13,6 @@ const memberRouter = require("./routes/member.route");
 const transactionRouter = require("./routes/transaction.route");
 const itemRouter = require("./routes/item.route");
 
-console.log("DATABASE_URL:", process.env.DATABASE_URL);
 // Association
 Member.hasMany(Campaign, {
     foreignKey: {
@@ -90,5 +89,5 @@ app.use("/api/item/", itemRouter);
 
 const port = process.env.PORT || 2222
 app.listen(port, () => {
-    console.log("Connected!")
+    console.log("Connected! Listent to port ", port)
 });
