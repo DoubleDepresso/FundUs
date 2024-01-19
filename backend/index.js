@@ -88,7 +88,7 @@ app.use("/api/member", memberRouter);
 app.use("/api/transaction", transactionRouter);
 app.use("/api/item/", itemRouter);
 
-
-app.listen(process.env.PORT , () => {
+const port = process.env.PORT || 2222
+app.listen(port, () => {
     console.log("Connected!")
 });

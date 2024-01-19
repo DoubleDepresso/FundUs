@@ -1,6 +1,7 @@
 const config = require("../config/db.config");
 
 const Sequelize = require("sequelize");
+require('dotenv').config();
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "mysql",
 });
