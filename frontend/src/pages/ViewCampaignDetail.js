@@ -81,15 +81,16 @@ export default function ViewCampaignDetail() {
                                 <li key={campaign.location}>Location: {campaign.location}</li>
                                 <li key={campaign.description}>Description: {campaign.description}</li>
                                 <li key={campaign.hostId}>Host: {campaign.member.name}</li>
-                                <li key={campaign.goal}>Goal: {campaign.goal}</li>
+                                {campaign.moneyDonation && <li>Goal: {campaign.moneyGoal} VND</li>}
+                                {campaign.physicalDonation && <li>Goal: {campaign.physicalGoal}</li>}
                                 <li key={campaign.startDate}>Start date: {campaign.startDate.split("T")[0]}</li>
                                 <li key={campaign.endDate}>End date: {campaign.endDate.split("T")[0]}</li>
                                 <li>The way you can help: {
                                 campaign.physicalDonation === true && (
-                                    <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+                                    <Link class="link" to={`/donate-item/${campaign.id}`}>Donate Item</Link>
                                 )}
                                 {campaign.moneyDonation === true && (
-                                <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
+                                <Link class="link" to={`/donate-money/${campaign.id}`}>Donate Money</Link>
                                 )}</li>
                             </>
                         )}
@@ -99,7 +100,7 @@ export default function ViewCampaignDetail() {
             {transactions && (
             <>
                 <h3>Transactions</h3>
-                <table>
+                <table id="history">
                     <thead>
                         <tr>
                             <th>Donor</th>
@@ -119,9 +120,10 @@ export default function ViewCampaignDetail() {
                         })}
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <tr id="total-money">
                             <td>Total</td>
                             <td>{totalMoney}</td>
+                            <td></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -130,7 +132,7 @@ export default function ViewCampaignDetail() {
             {items && (
             <>
                 <h3>Physical Items</h3>
-                <table>
+                <table id="history">
                     <thead>
                         <tr>
                             <th>Donor</th>
@@ -148,7 +150,7 @@ export default function ViewCampaignDetail() {
                                     <td>{item.member.name}</td>
                                     <td>{item.name}</td>
                                     <td>{item.type}</td>
-                                    <td>{item.description}</td>
+                                    <td id="description">{item.description}</td>
                                     <td>{item.pickupLocation}</td>
                                     <td>{item.pickupDate.split("T")[0]}</td>
                                 </tr>

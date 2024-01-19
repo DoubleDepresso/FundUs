@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 
+
 const url = 'http://localhost:2222/api/auth/signin';
 async function SigninUser(credentials) {
     return fetch(url, {
@@ -45,17 +46,21 @@ export default function SignIn() {
         }
     }
     return (
-        <div>
+        <>
             <NavBar/>
+            <div class="wrapper">   
             <h1>Sign in</h1>
-            <form onSubmit={handleSubmit}>
-                <label> Username: </label> <br/>
-                <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
-                <label>Password:</label><br/>
-                <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
-                <input type="submit" />
-            </form>
-            <Link to="/sign-up">Don't have an account yet?</Link>
-        </div>
+                <div class="form">
+                    <form onSubmit={handleSubmit}>
+                        <label> Username: </label> <br/>
+                        <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
+                        <label>Password:</label><br/>
+                        <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
+                        <input type="submit" />
+                    </form>
+                    <Link className="link" to="/sign-up">Don't have an account yet?</Link>
+                </div>
+            </div>
+        </>
     )
 }
