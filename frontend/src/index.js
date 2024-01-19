@@ -16,6 +16,7 @@ import EditProfile from './pages/EditProfile';
 import DonateMoney from './pages/DonateMoney';
 import Search from './pages/SearchPage';
 import ViewCampaignDetail from './pages/ViewCampaignDetail';
+import AboutUs from './pages/AboutUs';
 
 const router = new createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = new createBrowserRouter([
   {
     path: "/view-campaign-detail/:campaignId",
     element: <ViewCampaignDetail/>,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs/>,
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

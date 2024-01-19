@@ -83,7 +83,9 @@ const ViewMemberProfile = () => {
                         <li key={item.id}>
                             <p>Name: {item.name}</p>
                             <p>Campaign: {item.campaignId}</p>
+                            <p><Link to={`/view-campaign-detail/${item.campaignId}`}>Campaign Detail</Link></p>
                         </li>
+
                     ))
                 ) : (
                     <p>No items available</p>
@@ -98,6 +100,7 @@ const ViewMemberProfile = () => {
                             <p>Amount: {transaction.amount}</p>
                             <p>Account: {transaction.account}</p>
                             <p>Campaign: {transaction.campaignId}</p>
+                            <p><Link to={`/view-campaign-detail/${transaction.campaignId}`}>Campaign Detail</Link></p>
                         </li>
                     ))
                 ) : (
