@@ -1,6 +1,5 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/footer";
-import "../components/App.css";
 export default function Help() {
     return (
         <div>
