@@ -9,7 +9,7 @@
 /coverage
 
 # production
-# No need to exclude /build directory
+/build
 
 # misc
 .DS_Store
