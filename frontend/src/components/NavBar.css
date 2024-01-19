@@ -1,30 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 
 /* Navigation */
-.nav-bar {
+.nav-bar-container {
     padding: 20px;
-    text-align: center;
-    font-size: 17px;
-    font-family: 'Raleway', Times, serif;
-    text-decoration: none;
 }
+
+.nav-bar {
+    font-size: 18px;
+    font-family: 'Montserrat', Times, serif;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    margin-right: auto;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-bar-nav-links-container > * {
+    margin-left: auto;
+}
+
 .nav-link {
+    font-weight: bold;
+    padding: 8px 15px;
     text-decoration: none;
-    background-color: #C0DBEA;
-    padding: 15px;
-    border-radius: 30px;
+    color: #000000;
+    border-radius: 10px;
     margin: 20px;
-    transition: all 0.2s linear;
+
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
+
 .nav-link:hover{
-    background-color: #fbaabe;
+    background-color: #0087ff; 
+    color: #ffffff;
 }
 
 .nav-link-active {
+    font-weight: bold;
     text-decoration: none;
-    background-color: #fb7395;
-    padding: 15px;
-    border-radius: 30px;
+    background-color: #0087ff; 
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 10px;
     margin: 20px;
+}
+
+.logo-image {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-image:hover {
+    transform: scale(1.1);
+}
+
+.nav-bar-button {
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: red;
+    visibility: hidden;
+    opacity: 0;
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .nav-bar-button {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        background-color: red;
+        transition: 1s;
+        transform: translateY(-100vh);
+    }
+}
+
+.responsive_navbar {
+    transform: none;
+}
+
+.nav-bar-close-button {
+    
 }

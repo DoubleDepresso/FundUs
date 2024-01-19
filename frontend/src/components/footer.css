@@ -2,15 +2,24 @@
 
 
 .Footer {
-    margin-top: auto;
     background-color: #f4f4f4;
-    padding: 100px;
+    padding: 50px;
     font-family: 'Raleway', Times, serif;
     text-align: center;
 }
 
 .nav-link {
+    font-weight: bold;
+    padding: 8px 15px;
     text-decoration: none;
-    color: #333;
-    margin: 0 10px;
+    color: #000000;
+    border-radius: 10px;
+    margin: 20px;
+
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.Footer .nav-link:hover {
+    background-color: #262626; 
+    color: #f4f4f4;
 }

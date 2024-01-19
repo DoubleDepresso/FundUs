@@ -18,6 +18,8 @@ import Search from './pages/SearchPage';
 import ViewCampaignDetail from './pages/ViewCampaignDetail';
 import AboutUs from './pages/AboutUs';
 
+import "./index.css";
+
 const router = new createBrowserRouter([
   {
     path: "/",
@@ -80,11 +82,13 @@ const router = new createBrowserRouter([
     element: <AboutUs/>,
   },
 ])
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
+    <React.StrictMode>
+    <RouterProvider router={router}> 
+    </RouterProvider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

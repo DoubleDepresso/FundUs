@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar"
 import { useEffect, useState } from "react";
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import Footer from "../components/footer";
 
 const SearchPage = () => {
     const API = 'http://localhost:2222/api/campaign//get-search-result'
@@ -75,13 +76,10 @@ const SearchPage = () => {
     }, [searchField]); // reload campaign when search
   
     return (
-      <div>
-      <div>
-        <NavBar/>
-        <h1>Search Page</h1>
-      </div>  
-        <div>
-          <h1>Search HERE</h1>
+      <div class="App">
+        <div class="Header"><NavBar/></div>
+        <div class="Content">
+          <h1>Search Page Here:</h1>
 
             <p>Sort by Goal</p>
             <button onClick={() => searchBox('', '', 'DESC', 'moneyGoal')}>DESC</button>
@@ -116,9 +114,9 @@ const SearchPage = () => {
                 ))}
             </ul>
 
-            <button onClick={loadMoreCampaigns}>Load More</button>
-            
+          <button onClick={loadMoreCampaigns}>Load More</button>
         </div>
+        <div class="Footer"><Footer/></div>
       </div>
     );
   };

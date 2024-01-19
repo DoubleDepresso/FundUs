@@ -1,9 +1,9 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./footer.css";
 
-export default function App() {
+export default function Footer() {
     return (
-        <nav className="Footer" id="footer">
+        <nav className="Footer">
             <NavLink to="/about-us" className="nav-link">
                 Terms
             </NavLink>

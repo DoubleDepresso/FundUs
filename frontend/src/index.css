@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-size: rem;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* style for from */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form {
+    padding: 50px 100px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+}
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+textarea,
+input[type=submit] {
+    width: 30vw;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit]:hover, button:hover{
+    cursor: pointer;
+    background-color: #cfcfcf;
+}
+/* style for button and link */
+button {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 2px;
+}
+.link {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px;
+    margin: 2px;
+    background-color: #08adff;
+    border-radius: 5px;
+}
+.link:hover {
+    text-decoration: underline;
+}
+
+/* style for tables in detail campaign */
+#history tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+#history tr:not(#total-money):hover  {
+    background-color: #ddd;
+}
+#history th {
+    width: 15vw;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:#08adff;
+    color: rgb(255, 249, 249);
+}
+#description {
+    width: 50vw;
+}
+#total-money {
+    background-color: #08adff;
+    color: rgb(255, 255, 255);
+}
+
+/* style for list */
+ul {
+    list-style-type: circle;
+}
+
+li {
+    margin: 5px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    margin: 0;
+}
+
+.Footer {
+    margin-top: auto;
+}
