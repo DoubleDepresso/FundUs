@@ -38,6 +38,7 @@ input[type=password],
 input[type=email],
 input[type=number],
 textarea,
+input[type=date],
 input[type=submit] {
     width: 30vw;
     padding: 12px 20px;
