@@ -47,7 +47,7 @@ export default function ViewMemberProfile() {
                                 )}
                             )}
                         </ul>
-                        <Link to={`/edit-profile/${memberId}`}>Edit Profile</Link>
+                        <Link class="link" to={`/edit-profile/${memberId}`}>Edit Profile</Link>
                     </>
                 )}
         </div>

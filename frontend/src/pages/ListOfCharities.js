@@ -80,14 +80,14 @@ const CampaignList = () => {
             <p>Goal: {campaign.goal}</p>
             <p>
               {campaign.physicalDonation === true && (
-                <Link to={`/donate-item/${campaign.id}`}>Donate Item</Link>
+                <Link class="link" to={`/donate-item/${campaign.id}`}>Donate Item</Link>
               )}
               {campaign.moneyDonation === true && (
-              <Link to={`/donate-money/${campaign.id}`}>Donate Money</Link>
+                <Link class="link" to={`/donate-money/${campaign.id}`}>Donate Money</Link>
               )}
             </p>
             <p>
-              <Link to={`/view-campaign-detail/${campaign.id}`}>More Detail</Link>
+              <Link class="link" to={`/view-campaign-detail/${campaign.id}`}>More Detail</Link>
             </p>
           </li>
         ))}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 
 /* Navigation */
@@ -6,24 +6,24 @@
     padding: 20px;
     text-align: center;
     font-size: 17px;
-    font-family: 'Raleway', Times, serif;
+    font-family: 'Montserrat', Times, serif;
     text-decoration: none;
 }
 .nav-link {
     text-decoration: none;
-    background-color: #C0DBEA;
+    background-color: #f2f2f2;
     padding: 15px;
     border-radius: 30px;
     margin: 20px;
     transition: all 0.2s linear;
 }
 .nav-link:hover{
-    background-color: #fbaabe;
+    background-color: #cfcfcf;
 }
 
 .nav-link-active {
     text-decoration: none;
-    background-color: #fb7395;
+    background-color: #1fb4ff;
     padding: 15px;
     border-radius: 30px;
     margin: 20px;

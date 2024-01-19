@@ -78,7 +78,7 @@ export default function ViewMyCampaign() {
                                 {campaign.physicalDonation && <li>Goal: {campaign.physicalGoal}</li>}
                                 <li>Start: {campaign.startDate.split("T")[0]}</li>
                                 <li>End: {campaign.endDate.split("T")[0]}</li>
-                                <Link to={`/edit-campaign/${campaign.id}`}>Edit</Link>
+                                <Link class="link" to={`/edit-campaign/${campaign.id}`}>Edit</Link>
                                 <button onClick={() => handleDelete(campaign.id)}>Delete Campaign</button>
                             </>
                         )}
@@ -86,7 +86,7 @@ export default function ViewMyCampaign() {
                 ) : (
                     <p>There is no campaign to display.</p>
             )}
-            <Link to={"/create-campaign"}>Create a new campaign</Link>
+            <Link class="link" to={"/create-campaign"}>Create a new campaign</Link>
         </div>
     )
     
