@@ -29,70 +29,74 @@ export default function NavBar() {
     
     if (!token) {
         return (
-            <div className="nav-bar-container">
-                <nav ref={navRef} className="nav-bar">
-                    <div className="logo-container">
-                        <Link to="/" className="logo-link">
-                            <img src={logo} alt="Logo" className="logo-image" />
-                        </Link>
-                    </div>
-                    
-                    <div className="nav-bar-nav-links-container">
-                        <NavLink to="/list-of-charities" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            List of Charities
-                        </NavLink>
-                        <NavLink to="/sign-in" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Sign in
-                        </NavLink>
-                        <NavLink to="/sign-up" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Sign up
-                        </NavLink>
-                        <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Help
-                        </NavLink>
-                        <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Search
-                        </NavLink>
+            <header>
+                <div className="nav-bar-container">
+                    <nav ref={navRef} className="nav-bar">
+                        <div className="logo-container">
+                            <Link to="/" className="logo-link">
+                                <img src={logo} alt="Logo" className="logo-image" />
+                            </Link>
+                        </div>
+                        
+                        <div className="nav-bar-nav-links-container">
+                            <NavLink to="/list-of-charities" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                List of Charities
+                            </NavLink>
+                            <NavLink to="/sign-in" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Sign in
+                            </NavLink>
+                            <NavLink to="/sign-up" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Sign up
+                            </NavLink>
+                            <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Help
+                            </NavLink>
+                            <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Search
+                            </NavLink>
 
-                        <button className="nav-bar-close-button" onClick={responseNavbar}><FaTimes /></button>
-                    </div>
-                </nav>
-                <button className="nav-bar-button" onClick={responseNavbar}><FaBars /></button>
-            </div>
+                            <button className="nav-bar-button close-button" onClick={responseNavbar}><FaTimes /></button>
+                        </div>
+                    </nav>
+                    <button className="nav-bar-button" onClick={responseNavbar}><FaBars /></button>
+                </div>
+            </header>
         )
     } else {
         return (
-            <div className="container">
-                <nav className="nav-bar">
-                    <div className="logo-container">
-                        <Link to="/" className="logo-link">
-                            <img src={logo} alt="Logo" className="logo-image" />
-                        </Link>
-                    </div>
+            <header>
+                <div className="container">
+                    <nav ref={navRef} className="nav-bar">
+                        <div className="logo-container">
+                            <Link to="/" className="logo-link">
+                                <img src={logo} alt="Logo" className="logo-image" />
+                            </Link>
+                        </div>
 
-                    <div className="nav-bar-nav-links-container">
-                        <NavLink to="/list-of-charities" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            List of Charities
-                        </NavLink>
-                        <NavLink to="/view-profile" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            My profile
-                        </NavLink>
-                        <NavLink to="/view-my-campaign" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            View My Campaigns
-                        </NavLink>
-                        <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Search
-                        </NavLink>
-                        <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
-                            Help
-                        </NavLink>
+                        <div className="nav-bar-nav-links-container">
+                            <NavLink to="/list-of-charities" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                List of Charities
+                            </NavLink>
+                            <NavLink to="/view-profile" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                My profile
+                            </NavLink>
+                            <NavLink to="/view-my-campaign" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                View My Campaigns
+                            </NavLink>
+                            <NavLink to="/search-page" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Search
+                            </NavLink>
+                            <NavLink to="/help" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>
+                                Help
+                            </NavLink>
 
-                        <button onClick={handleLogout}>Sign out</button> 
-                        <button className="nav-bar-close-button" onClick={responseNavbar}><FaTimes /></button>
-                    </div>
-                </nav>
-                <button className="nav-bar-button" onClick={responseNavbar}><FaBars /></button>
-            </div>
+                            <button onClick={handleLogout}>Sign out</button> 
+                            <button className="nav-bar-button close-button" onClick={responseNavbar}><FaTimes /></button>
+                        </div>
+                    </nav>
+                    <button className="nav-bar-button" onClick={responseNavbar}><FaBars /></button>
+                </div>
+            </header>
         )
     }
 }

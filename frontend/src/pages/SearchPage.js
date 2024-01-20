@@ -1,13 +1,16 @@
 import NavBar from "../components/NavBar"
-import { useEffect, useState } from "react";
-import 'react-confirm-alert/src/react-confirm-alert.css';
 import Footer from "../components/footer";
+
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const SearchPage = () => {
     const API = 'http://localhost:2222/api/campaign//get-search-result'
     const [campaigns, setCampaigns] = useState([]);
     const [current, setCurrent] = useState(null);
     const [searchField, setSearchField] = useState(null);
+    const [isVisible, setIsVisible] = useState(true);
 
     const defaultValue = '';
     const defaultSearchField = `${defaultValue},${defaultValue},${defaultValue},${defaultValue}`; // default value is empty
@@ -31,6 +34,7 @@ const SearchPage = () => {
     // change searchField API
     const searchBox = (keyword, location, direction, field) => {
         setSearchField(`${keyword},${location},${direction},${field}`);
+        setIsVisible(true);
     }
 
     const loadMoreCampaigns = async () => {
@@ -48,7 +52,7 @@ const SearchPage = () => {
                   setCampaigns(prevCampaigns => [...prevCampaigns, ...newCampaignsList]);
                   setCurrent(prevCurrent => prevCurrent + 1);
               } else {
-                  alert('No more');
+                setIsVisible(false);
               }
           })
           .catch(error => {
@@ -76,18 +80,28 @@ const SearchPage = () => {
     }, [searchField]); // reload campaign when search
   
     return (
-      <div class="App">
-        <div class="Header"><NavBar/></div>
-        <div class="Content">
+      <div className="App">
+        <div className="Header"><NavBar/></div>
+        <div className="Content">
           <h1>Search Page Here:</h1>
+          
+            <div className="sort-container">
+            <div className="sort-section">
+              <p>Sort by created Date</p>
+              <div className="sort-buttons">
+                <button className="desc-btn" onClick={() => searchBox('', '', 'DESC', 'moneyGoal')}>DESC</button>
+                <button className="asc-btn" onClick={() => searchBox('', '', 'ASC', 'moneyGoal')}>ASC</button>
+              </div>
+            </div>
 
-            <p>Sort by Goal</p>
-            <button onClick={() => searchBox('', '', 'DESC', 'moneyGoal')}>DESC</button>
-            <button onClick={() => searchBox('', '', 'ASC', 'moneyGoal')}>ASC</button>
-
-            <p>Sort by Start Date</p>
-            <button onClick={() => searchBox('', '', 'DESC', 'startDate')}>DESC</button>
-            <button onClick={() => searchBox('', '', 'ASC', 'startDate')}>ASC</button>
+            <div className="sort-section">
+              <p>Sort by Goal</p>
+              <div className="sort-buttons">
+                <button className="desc-btn" onClick={() => searchBox('', '', 'DESC', 'startDate')}>DESC</button>
+                <button className="asc-btn" onClick={() => searchBox('', '', 'ASC', 'startDate')}>ASC</button>
+              </div>
+            </div>
+          </div>
   
             <form id="keyword" onSubmit={handleSearch}>
               <label>Search:</label>
@@ -101,22 +115,29 @@ const SearchPage = () => {
               <button type="submit">Search</button>
             </form>
             
-            <ul>
-                {campaigns.map(campaign => (
-                <li key={campaign.id}>
-                    <p>id: {campaign.id}</p>
-                    <p>Name: {campaign.name}</p>
-                    <p>Start Date: {campaign.startDate}</p>
-                    <p>Goal: {campaign.moneyGoal}</p>
-                    <p>Description: {campaign.description}</p>
-                    <p>Location: {campaign.location}</p>
-                </li>
-                ))}
-            </ul>
+            <ul className="campaign-grid">
+            {campaigns.map(campaign => (
+              <li className="campaign-containter" key={campaign.id}>
+              <Link className="campaign-link" to={`/view-campaign-detail/${campaign.id}`}>
+                <div className="campaign-card">
+                  <p className="campaign-info campaign-name">{campaign.name}</p>
+                  <p className="campaign-info">Start Date: {campaign.startDate.substring(0, 10)}</p>
+                  <p className="campaign-info">Goal: {campaign.moneyGoal.toLocaleString()} VND</p>
+                </div>
+              </Link>
+              </li>
+            ))}
+          </ul>
 
-          <button onClick={loadMoreCampaigns}>Load More</button>
+          <div className="button-container">
+            {isVisible && (
+              <button className="load-button" onClick={loadMoreCampaigns}>
+                Load More
+              </button>
+            )}
+          </div>
         </div>
-        <div class="Footer"><Footer/></div>
+        <div className="Footer"><Footer/></div>
       </div>
     );
   };

@@ -2,32 +2,35 @@
 
 
 /* Navigation */
-.nav-bar-container {
-    padding: 20px;
+header .nav-bar-container {
+    padding: 0px 20px;
+    margin-top: 20px;
 }
 
-.nav-bar {
+header .nav-bar {
     font-size: 18px;
     font-family: 'Montserrat', Times, serif;
     text-decoration: none;
     display: flex;
     align-items: center;
+    
 }
 
-.logo-container {
+header .logo-container {
     margin-right: auto;
+    padding: 20px;
 }
 
-.logo-link {
+header .logo-link {
     text-decoration: none;
     color: inherit;
 }
 
-.nav-bar-nav-links-container > * {
+header .nav-bar-nav-links-container {
     margin-left: auto;
 }
 
-.nav-link {
+header .nav-link {
     font-weight: bold;
     padding: 8px 15px;
     text-decoration: none;
@@ -38,12 +41,12 @@
     transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-link:hover{
+header .nav-link:hover{
     background-color: #0087ff; 
     color: #ffffff;
 }
 
-.nav-link-active {
+header .nav-link-active {
     font-weight: bold;
     text-decoration: none;
     background-color: #0087ff; 
@@ -53,7 +56,7 @@
     margin: 20px;
 }
 
-.logo-image {
+header .logo-image {
     width: 100px; 
     height: 100px;
     border-radius: 50%;
@@ -61,29 +64,48 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.logo-image:hover {
+header .logo-image:hover {
     transform: scale(1.1);
 }
 
-.nav-bar-button {
+header .nav-bar-button {
     padding: 5px;
     cursor: pointer;
     background: transparent;
     border: none;
     outline: none;
-    color: red;
+    color: #0087ff;
     visibility: hidden;
     opacity: 0;
     font-size: 30px;
 }
 
 @media only screen and (max-width: 1024px) {
-    .nav-bar-button {
+    header .nav-bar-button {
         visibility: visible;
         opacity: 1;
     }
 
-    .nav-bar {
+    header .nav-bar-button:hover {
+        border: none;
+        background-color: transparent;
+        color: #0087ff;
+    }
+
+    header .logo-container {
+        margin-right: 0;
+    }
+
+    header .nav-bar-nav-links-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        margin-left: 0;
+    }
+
+    header .nav-bar {
         position: fixed;
         top: 0;
         left: 0;
@@ -91,19 +113,28 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         align-items: center;
         justify-content: center;
         gap: 22px;
-        background-color: red;
+        background-color: #f4f4f4;
         transition: 1s;
         transform: translateY(-100vh);
     }
+
+    header .responsive_navbar {
+        transform: none;
+    }
+
+    header .close-button {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+    }
+
+    header .nav-link {
+        margin: 0;
+    }
 }
 
-.responsive_navbar {
-    transform: none;
-}
 
-.nav-bar-close-button {
-    
-}

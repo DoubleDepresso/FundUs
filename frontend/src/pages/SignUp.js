@@ -1,6 +1,8 @@
+import NavBar from "../components/NavBar"
+import Footer from "../components/footer";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import NavBar from "../components/NavBar";
 
 const url = 'http://localhost:2222/api/auth/signup';
 async function SignUpUser(credentials) {
@@ -129,35 +131,38 @@ export default function SignUp() {
     };
 
     return(
-        <div>
-            <NavBar/>
-            <h1>Sign up</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Name:</label><br/>
-                <input type="text" name="name" maxLength="225" minLength="4" onChange={e => setName(e.target.value)} value={name} placeholder="Enter Your Name"></input><br/>
+        <div className="App">
+            <div className="Header"><NavBar/></div>
+            <div className="Content">
+                <h1>Sign up</h1>
+                <form onSubmit={handleSubmit}>
+                    <label>Name:</label><br/>
+                    <input type="text" name="name" maxLength="225" minLength="4" onChange={e => setName(e.target.value)} value={name} placeholder="Enter Your Name"></input><br/>
 
-                <label>Username: </label><br/>
-                <input type="text" name="username" maxLength="225" minLength="6" onChange={usernameOnChange} value={username} placeholder="Enter Your Username"/><br/>
+                    <label>Username: </label><br/>
+                    <input type="text" name="username" maxLength="225" minLength="6" onChange={usernameOnChange} value={username} placeholder="Enter Your Username"/><br/>
 
-                <label>Password:</label><br/>
-                <input type="password" name="password" maxLength="225" minLength="8" onChange={passwordOnChange} value={password} placeholder="Enter Your Password"/><br/>
+                    <label>Password:</label><br/>
+                    <input type="password" name="password" maxLength="225" minLength="8" onChange={passwordOnChange} value={password} placeholder="Enter Your Password"/><br/>
 
-                <label>Phone Number:</label><br/>
-                <input type="number" name="phone" maxLength="12" minLength="8" onChange={e => setPhone(e.target.value)} value={phone} placeholder="Enter Your Phone Number"></input><br/>
+                    <label>Phone Number:</label><br/>
+                    <input type="number" name="phone" maxLength="12" minLength="8" onChange={e => setPhone(e.target.value)} value={phone} placeholder="Enter Your Phone Number"></input><br/>
 
-                <label>Email Address:</label><br/>
-                <input type="email" name="email" maxLength="225" onChange={e => setEmail(e.target.value)} value={email} placeholder="Enter Your Email Address"></input><br/>
+                    <label>Email Address:</label><br/>
+                    <input type="email" name="email" maxLength="225" onChange={e => setEmail(e.target.value)} value={email} placeholder="Enter Your Email Address"></input><br/>
 
-                <label>Home Address:</label><br/>
-                <input type="text" name="address" maxLength="225" onChange={e => setAddress(e.target.value)} value={address} placeholder="Enter Your Home Address"></input><br/>
+                    <label>Home Address:</label><br/>
+                    <input type="text" name="address" maxLength="225" onChange={e => setAddress(e.target.value)} value={address} placeholder="Enter Your Home Address"></input><br/>
 
-                <label>Verification:</label><br/>
-                <input type="number" name="verification" maxLength="225" onChange={e => setVerification(e.target.value)} value={verification} placeholder="Enter your CCCD"/><br/>
+                    <label>Verification:</label><br/>
+                    <input type="number" name="verification" maxLength="225" onChange={e => setVerification(e.target.value)} value={verification} placeholder="Enter your CCCD"/><br/>
 
-                {formError && <div style={{ color: 'red' }}>{formError}</div>}
-                <input type="submit" /> 
-            </form>
-            <Link to="/sign-in">Have an account already?</Link>
+                    {formError && <div style={{ color: 'red' }}>{formError}</div>}
+                    <input type="submit" /> 
+                </form>
+                <Link to="/sign-in">Have an account already?</Link>
+            </div>
+            <div className="Footer"><Footer/></div>
         </div>
     )
 }

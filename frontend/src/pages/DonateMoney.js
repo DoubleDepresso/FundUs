@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar"
+import Footer from "../components/footer";
+
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
 import QRcode from "../assets/QRcode.png";
 
 async function submitForm(values) {
@@ -48,29 +50,32 @@ export default function DonateMoney() {
     }
     
     return(
-        <div>
-            <NavBar/>
-            <h1>Donate</h1>
-            <p>Please fill in the form and scan the QR code to finish your donation!</p>
-            <div>
-                <img src={QRcode} alt="QR code" width="200px" height="200px"></img>
-                <p>
-                    Bank: BankName<br/>
-                    Name: FundUs<br/>
-                    Bank number: 0101010<br/>
-                </p>
-            </div>
-            <form onSubmit={handleSubmit}>
-                <label>Your Account: </label> <br/>
-                <input type="text" name="account" onChange={e => setAccount(e.target.value)} 
-                value={account} required/><br/>
-                
-                <label>Amount: </label><br/>
-                <input type="number" name="amount" onChange={e => setAmount(e.target.value)} 
-                value={amount} min={0} required/><br/>
+        <div className="App">
+            <div className="Header"><NavBar/></div>
+            <div className="Content">
+                <h1>Donate</h1>
+                <p className="label-text">Please fill in the form and scan the QR code to finish your donation!</p>
+                <div>
+                    <img src={QRcode} alt="QR code" width="200px" height="200px"></img>
+                    <p className="label-text">
+                        Bank: SampleBankName<br/>
+                        Name: FundUs<br/>
+                        Bank number: 0101010<br/>
+                    </p>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <label>Your Account: </label> <br/>
+                    <input type="text" name="account" onChange={e => setAccount(e.target.value)} 
+                    value={account} required/><br/>
+                    
+                    <label>Amount: </label><br/>
+                    <input type="number" name="amount" onChange={e => setAmount(e.target.value)} 
+                    value={amount} min={0} required/><br/>
 
-                <input type="submit" />
-            </form>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div className="Footer"><Footer/></div>
         </div>
     )
 }

@@ -1,5 +1,7 @@
+import NavBar from "../components/NavBar"
+import Footer from "../components/footer";
+
 import { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
 
 async function fetchMemberProfile(memberId, setMemberProfile) {
@@ -48,66 +50,71 @@ const ViewMemberProfile = () => {
     
     
     return (
-        <div>
-            <NavBar/>
-            <h1>Your Profile</h1>
-                {memberProfile && (
-                    <>
-                        <ul>
-                            <li key='profile'>
-                            { Object.entries(memberProfile).map(([index, member]) => 
-                                {return(
-                                    <>  
-                                        <p>Name: {member.name}</p>
-                                        <p>Username: {member.username}</p>
-                                        <p>Password: {member.password.replace(/./g, '*')}</p>
-                                        <p>Email: {member.email}</p>
-                                        <p>Phone: {member.phone}</p>
-                                        <p>Address: {member.address}</p>
-                                        <p>Verification: {member.verification}</p>                                        
-                                    </>
+        <div className="App">
+            <div className="Header"><NavBar/></div>
+            <div className="Content">
+                <h1>Your Profile</h1>
+                    {memberProfile && (
+                        <>
+                            <ul>
+                                <li key='profile'>
+                                { Object.entries(memberProfile).map(([index, member]) => 
+                                    {return(
+                                        <div className="campaign-containter">  
+                                            <p>Name: {member.name}</p>
+                                            <p>Username: {member.username}</p>
+                                            <p>Password: {member.password.replace(/./g, '*')}</p>
+                                            <p>Email: {member.email}</p>
+                                            <p>Phone: {member.phone}</p>
+                                            <p>Address: {member.address}</p>
+                                            <p>Verification: {member.verification}</p>     
+                                            <Link className="link-button" to={`/edit-profile/${memberId}`}>Edit Profile</Link>                                   
+                                        </div>
+                                    )}
                                 )}
-                            )}
-                            </li>
-                        </ul>
-                        <Link to={`/edit-profile/${memberId}`}>Edit Profile</Link>
-                    </>
-                )}
+                                </li>
+                            </ul>
+                        </>
+                    )}
 
-            <h2>Following Campaigns and Donation details</h2>
+                <h2 className="style-text">Following Campaigns and Donation details</h2>
 
-            <h4>Item Donation</h4>
-            <ul>
-                {itemData && itemData.length > 0 ? (
-                    itemData.map(item => (
-                        <li key={item.id}>
-                            <p>Name: {item.name}</p>
-                            <p>Campaign: {item.campaignId}</p>
-                            <p><Link to={`/view-campaign-detail/${item.campaignId}`}>Campaign Detail</Link></p>
-                        </li>
+                <h4 className="style-text">Item Donation</h4>
+                <ul>
+                    {itemData && itemData.length > 0 ? (
+                        itemData.map(item => (
+                            <div className="campaign-containter">
+                                <li key={item.id}>
+                                    <p>Name: {item.name}</p>
+                                    <p>Campaign: {item.campaignId}</p>
+                                    <p><Link className="link-button" to={`/view-campaign-detail/${item.campaignId}`}>Campaign Detail</Link></p>
+                                </li>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No items available</p>
+                    )}
+                </ul>
 
-                    ))
-                ) : (
-                    <p>No items available</p>
-                )}
-            </ul>
-
-            <h4>Money Donation</h4>
-            <ul>
-                {transactionData && transactionData.length > 0 ? (
-                    transactionData.map(transaction => (
-                        <li key={transaction.id}>
-                            <p>Amount: {transaction.amount}</p>
-                            <p>Account: {transaction.account}</p>
-                            <p>Campaign: {transaction.campaignId}</p>
-                            <p><Link to={`/view-campaign-detail/${transaction.campaignId}`}>Campaign Detail</Link></p>
-                        </li>
-                    ))
-                ) : (
-                    <p>No transactions available</p>
-                )}
-            </ul>
-
+                <h4 className="style-text">Money Donation</h4>
+                <ul>
+                    {transactionData && transactionData.length > 0 ? (
+                        transactionData.map(transaction => (
+                            <div className="campaign-containter">
+                                <li key={transaction.id}>
+                                    <p>Amount: {transaction.amount}</p>
+                                    <p>Account: {transaction.account}</p>
+                                    <p>Campaign: {transaction.campaignId}</p>
+                                    <p><Link className="link-button" to={`/view-campaign-detail/${transaction.campaignId}`}>Campaign Detail</Link></p>
+                                </li>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No transactions available</p>
+                    )}
+                </ul>
+            </div>
+            <div className="Footer"><Footer/></div>
         </div>
     )
 }

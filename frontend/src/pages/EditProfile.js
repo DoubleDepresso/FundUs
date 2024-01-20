@@ -1,5 +1,7 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar"
+import Footer from "../components/footer";
+
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 async function submitForm(values) {
@@ -86,40 +88,43 @@ export default function EditProfile() {
     }
     
     return(
-        <>
-            <NavBar/>
-            <h1>Edit Profile</h1>
-            {member && (
-                <>
-                    <form onSubmit={handleSubmit}>   
-                        <p>Username: {username}</p> 
+        <div className="App">
+            <div className="Header"><NavBar/></div>
+            <div className="Content">
+                <h1>Edit Profile</h1>
+                {member && (
+                    <>
+                        <form className="style-text" onSubmit={handleSubmit}>   
+                            <p>Username: {username}</p> 
 
-                        <label>Name: </label> <br/>
-                        <input type="text" name="name" onChange={e => setName(e.target.value)} 
-                        value={name}/><br/>
-                        
-                        <label>Address:</label><br/>
-                        <input type="text" name="address" onChange={e => setAddress(e.target.value)} 
-                        value={address}/><br/>
-                        
-                        <label>Phone:</label><br/>
-                        <input type="number" name="phone" onChange={e => setPhone(e.target.value)} 
-                        value={phone}/><br/>
-                        
-                        <label>Password:</label><br/>
-                        <input type="password" name="phone" onChange={e => setPassword(e.target.value)} 
-                        value={password}/><br/>
-                        
-                        <label>Email:</label><br/>
-                        <input type="email" name="email" onChange={e => setEmail(e.target.value)} 
-                        value={email}/><br/>
-                        
-                        <p>Verification: {verification}</p>
+                            <label>Name: </label> <br/>
+                            <input type="text" name="name" onChange={e => setName(e.target.value)} 
+                            value={name}/><br/>
+                            
+                            <label>Address:</label><br/>
+                            <input type="text" name="address" onChange={e => setAddress(e.target.value)} 
+                            value={address}/><br/>
+                            
+                            <label>Phone:</label><br/>
+                            <input type="number" name="phone" onChange={e => setPhone(e.target.value)} 
+                            value={phone}/><br/>
+                            
+                            <label>Password:</label><br/>
+                            <input type="password" name="phone" onChange={e => setPassword(e.target.value)} 
+                            value={password}/><br/>
+                            
+                            <label>Email:</label><br/>
+                            <input type="email" name="email" onChange={e => setEmail(e.target.value)} 
+                            value={email}/><br/>
+                            
+                            <p>Verification: {verification}</p>
 
-                        <input type="submit"/>
-                    </form>
-                </>
-            )}
-        </>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </>
+                )}
+            </div>
+            <div className="Footer"><Footer/></div>
+        </div>
     )
 }
