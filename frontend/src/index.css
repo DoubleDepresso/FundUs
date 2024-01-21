@@ -240,6 +240,7 @@ li {
 .asc-btn:hover {
     color: #32cd32;
     background-color: #f4f4f4;
+    border: 2px solid #32cd32;
 }
   
 /* campaign container */
