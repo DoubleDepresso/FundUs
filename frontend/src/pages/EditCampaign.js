@@ -37,7 +37,7 @@ export default function EditCampaign() {
     useEffect(() => {
         async function fetchData () {
           try {
-            const response = await fetch(`http://localhost:2222/api/campaign/get-campaign-by-campaignId/${id}`);
+            const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/get-campaign-by-campaignId/${id}`);
     
             if (!response.ok) {
               console.error(`HTTP error! Status: ${response.status}`);
