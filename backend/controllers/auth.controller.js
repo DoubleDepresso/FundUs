@@ -5,7 +5,6 @@ const { Op } = require('sequelize'); //npm install sequelize
 const Member = db.member;
 
 var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
 
 // Sign-in features
 exports.signin = (req, res) => {
@@ -19,7 +18,7 @@ exports.signin = (req, res) => {
         if (!member) {
             return res.status(404).send({ message: "User Not found." });
         }
-        var passwordIsValid = (req.body.password === member.password); //use bcrypt to encrypt the passwords
+        var passwordIsValid = (req.body.password === member.password); 
 
         if (!passwordIsValid) {
             return res.status(401).send({

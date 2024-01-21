@@ -34,7 +34,7 @@ exports.editCampaign = (req, res) => {
         location: req.body.location,
         moneyDonation: req.body.includeMoney,
         physicalDonation: req.body.includeItem,
-        available: false,
+        available: req.body.available,
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
@@ -57,7 +57,6 @@ exports.getCampaignByHostId = (req, res) =>  {
         attributes: ["id", "name", "location", "physicalDonation", "moneyDonation", "startDate", "endDate", "physicalGoal", "moneyGoal"],
         where: {
             hostId : req.params.hostId,
-            available: true,
         }
     })
     .then((records) => {
