@@ -142,7 +142,7 @@ exports.getSortedCampaign = (req, res) =>  {
     const { current = 0, sorting = '' } = req.query;
 
     const [field, direction] = sorting.split(',');
-    const limit = 2;
+    const limit = 6;
 
     Campaign.findAll({
         order: [[field, direction]],
@@ -173,7 +173,7 @@ exports.getSearchResult = (req, res) =>  {
     direction = direction || 'DESC';
     field = field || 'moneyGoal';
 
-    const limit = 2;
+    const limit = 6;
 
     Campaign.findAll({
         order: [[field, direction]],
