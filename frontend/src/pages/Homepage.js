@@ -101,6 +101,11 @@ const CampaignList = () => {
           With a track record of successful campaigns and a commitment to low fees, 
           we make your contribution go further in making a meaningful difference. 
           Join us in creating positive change with confidence and trust.</p>
+          <br />
+          <p>Nowadays, many individuals struggle with their own financial issues to even meet their ends need. 
+          Every year, millions of people worldwide struggle with hunger, poverty, and a lack of basic necessities. 
+          Unfortunately, these people seldom have access to conventional lenders like banks and venture capitalists, 
+          which limits their options for obtaining the necessary funding. </p>
         </div>
         </div>
         <div className="Footer"><Footer/></div>
