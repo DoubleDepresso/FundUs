@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 async function fetchMemberProfile(memberId, setMemberProfile) {
     try {
-        const response = await fetch(`http://localhost:2222/api/member/get-member-by-memberId/${memberId}`)
+        const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/member/get-member-by-memberId/${memberId}`)
         if (!response.ok) {
             console.error(response.status);
         }
@@ -28,7 +28,7 @@ const ViewMemberProfile = () => {
     }, [memberId])
 
     useEffect(() => {
-        fetch(`http://localhost:2222/api/campaign/get-following-campaign-by-memberId?memberId=${memberId}`)
+        fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/get-following-campaign-by-memberId?memberId=${memberId}`)
             .then(response => {
                 if (!response.ok) {
                     console.error(response.status);

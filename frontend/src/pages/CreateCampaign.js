@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const url = "http://localhost:2222/api/campaign/create-campaign";
+const url = "https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/create-campaign";
 
 async function CreateCampaignUser(values) {
     return fetch(url, {

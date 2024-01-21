@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const SearchPage = () => {
-    const API = 'http://localhost:2222/api/campaign//get-search-result'
+    const API = 'https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign//get-search-result'
     const [campaigns, setCampaigns] = useState([]);
     const [current, setCurrent] = useState(null);
     const [searchField, setSearchField] = useState(null);

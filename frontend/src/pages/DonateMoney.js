@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import QRcode from "../assets/QRcode.png";
 
 async function submitForm(values) {
-    return fetch("http://localhost:2222/api/campaign/donate-money", {
+    return fetch("https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/donate-money", {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(values)
@@ -41,7 +41,7 @@ export default function DonateMoney() {
             })
             if (response.success) {
                 alert("Your donation is success! Thank you for your help!");
-                navigate("/");
+                navigate(`/view-campaign-detail/${campaignId}`);
             } else {
                 alert(response.message);
             }

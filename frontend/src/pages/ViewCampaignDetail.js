@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 // fetch the detail of campaign
 async function fetchCampaignDetail(campaignId, setCampaignDetail) {
     try {
-        const response = await fetch(`http://localhost:2222/api/campaign/get-campaign-by-campaignId/${campaignId}`)
+        const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/get-campaign-by-campaignId/${campaignId}`)
         if (!response.ok) {
             console.error(response.status);
         }
@@ -22,7 +22,7 @@ async function fetchCampaignDetail(campaignId, setCampaignDetail) {
 // fetch the the transactions by the campaignId
 async function fetchTransaction(campaignId, setTransactions) {
     try {
-        const response = await fetch(`http://localhost:2222/api/transaction/get-transaction-by-campaignId/${campaignId}`)
+        const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/transaction/get-transaction-by-campaignId/${campaignId}`)
         if (!response.ok) {
             console.error(response.status);
         }
@@ -37,7 +37,7 @@ async function fetchTransaction(campaignId, setTransactions) {
 // fetch physical item history by the campaignId
 async function fetchItemHistory(campaignId, setItems) {
     try {
-        const response = await fetch(`http://localhost:2222/api/item/get-item-by-campaignId/${campaignId}`)
+        const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/item/get-item-by-campaignId/${campaignId}`)
         if (!response.ok) {
             console.error(response.status);
         }
@@ -56,7 +56,15 @@ export default function ViewCampaignDetail() {
     const [items, setItems] = useState(null);
     const campaignId = useParams().campaignId;
     let totalMoney = 0;
+    const [token, setToken] = useState("");
 
+    useEffect(() => {
+        const loggined = localStorage.getItem("token");
+        if (loggined) {
+            const foundToken = loggined;
+            setToken(foundToken)
+        }
+    }, []);
     useEffect(() => {
         fetchCampaignDetail(campaignId, setCampaignDetail);
         fetchTransaction(campaignId, setTransactions);
@@ -86,7 +94,7 @@ export default function ViewCampaignDetail() {
                                     <li key={campaign.moneyGoal}>Goal: {campaign.moneyGoal.toLocaleString()}</li>
                                     <li key={campaign.startDate}>Start date: {campaign.startDate.split("T")[0]}</li>
                                     <li key={campaign.endDate}>End date: {campaign.endDate.split("T")[0]}</li>
-                                    <li>The way you can help: </li>
+                                    {token ? (<><li>The way you can help: </li>
                                     <div className="align-center">
                                         {
                                         campaign.physicalDonation === true && (
@@ -95,7 +103,7 @@ export default function ViewCampaignDetail() {
                                         {campaign.moneyDonation === true && (
                                         <Link className="link-button" to={`/donate-money/${campaign.id}`}>Donate Money</Link>
                                         )}
-                                    </div>
+                                    </div></>) : (<div className="align-center"><Link className="link-button" to={`/sign-in`}>Sign in to donate</Link></div>)}
                                 </div>
                             )}
                         )}
@@ -127,6 +135,7 @@ export default function ViewCampaignDetail() {
                             <tr>
                                 <td>Total</td>
                                 <td>{totalMoney}</td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>

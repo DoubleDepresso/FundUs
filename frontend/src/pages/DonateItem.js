@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 async function submitForm(values) {
-    return fetch("http://localhost:2222/api/campaign/donate-item", {
+    return fetch("https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/donate-item", {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(values)
@@ -49,7 +49,7 @@ export default function DonateItem() {
             });
             if (response.success) {
                 alert("The item is waited to pick up! Thank you for your help");
-                navigate("/view-my-campaign");
+                navigate(`/view-campaign-detail/${campaignId}`);
             }
         }
     }

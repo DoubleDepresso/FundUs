@@ -8,7 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 async function fetchCampaign(hostId, setCampaigns) {
     try {
-        const response = await fetch(`http://localhost:2222/api/campaign/get-campaign-by-hostId/${hostId}`)
+        const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/get-campaign-by-hostId/${hostId}`)
         if (!response.ok) {
             console.error(response.status);
         }
@@ -20,7 +20,7 @@ async function fetchCampaign(hostId, setCampaigns) {
 }
 
 async function DeleteCampaign(campaignId) {
-    return fetch(`http://localhost:2222/api/campaign/delete-campaign/${campaignId}`, {
+    return fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/delete-campaign/${campaignId}`, {
         method: "DELETE",
     })
     .then(data => { 

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 async function submitForm(values) {
-    return await fetch('http://localhost:2222/api/member/edit-member', {
+    return await fetch('https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/member/edit-member', {
         method: "PUT",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(values)
@@ -37,7 +37,7 @@ export default function EditProfile() {
     useEffect(() => {
         async function fetchData () {
           try {
-            const response = await fetch(`http://localhost:2222/api/member/get-member-by-memberId/${id}`);
+            const response = await fetch(`https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/member/get-member-by-memberId/${id}`);
     
             if (!response.ok) {
               console.error(`HTTP error! Status: ${response.status}`);

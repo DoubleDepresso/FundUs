@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 async function submitForm(values) {
-    return fetch("http://localhost:2222/api/campaign/edit-campaign", {
+    return fetch("https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign/edit-campaign", {
         method: "PUT",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify(values)

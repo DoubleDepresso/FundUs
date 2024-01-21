@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const url = 'http://localhost:2222/api/auth/signin';
+const url = 'https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/auth/signin';
 async function SigninUser(credentials) {
     return fetch(url, {
         method: "POST",

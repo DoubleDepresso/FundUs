@@ -6,7 +6,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Link } from "react-router-dom";
 
 const CampaignList = () => {
-  const API = 'http://localhost:2222/api/campaign//get-sorted-campaign';
+  const API = 'https://fundus-nodejs-783e866fbb5e.herokuapp.com/api/campaign//get-sorted-campaign';
   const [campaigns, setCampaigns] = useState([]);
   const [current, setCurrent] = useState(null);
   const [sorting, setSorting] = useState(null);
