@@ -54,26 +54,32 @@ export default function DonateMoney() {
             <div className="Header"><NavBar/></div>
             <div className="Content">
                 <h1>Donate</h1>
-                <p className="label-text">Please fill in the form and scan the QR code to finish your donation!</p>
-                <div>
-                    <img src={QRcode} alt="QR code" width="200px" height="200px"></img>
-                    <p className="label-text">
-                        Bank: SampleBankName<br/>
-                        Name: FundUs<br/>
-                        Bank number: 0101010<br/>
-                    </p>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <label>Your Account: </label> <br/>
-                    <input type="text" name="account" onChange={e => setAccount(e.target.value)} 
-                    value={account} required/><br/>
-                    
-                    <label>Amount: </label><br/>
-                    <input type="number" name="amount" onChange={e => setAmount(e.target.value)} 
-                    value={amount} min={0} required/><br/>
+                <div className="style-text">
+                    <div className="align-center">
+                        <div>
+                            <p className="label-text">Please fill in the form and scan the QR code to finish your donation!</p>
+                            <div>
+                                <img src={QRcode} alt="QR code" width="200px" height="200px"></img>
+                                <p className="label-text">
+                                    Bank: SampleBankName<br/>
+                                    Name: FundUs<br/>
+                                    Bank number: 0101010<br/>
+                                </p>
+                            </div>
+                            <form onSubmit={handleSubmit}>
+                                <label>Your Account: </label> <br/>
+                                <input type="text" name="account" onChange={e => setAccount(e.target.value)} 
+                                value={account} required/><br/>
+                                
+                                <label>Amount: </label><br/>
+                                <input type="number" name="amount" onChange={e => setAmount(e.target.value)} 
+                                value={amount} min={0} required/><br/>
 
-                    <button type="submit">Submit</button>
-                </form>
+                                <button className="link-button" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="Footer"><Footer/></div>
         </div>

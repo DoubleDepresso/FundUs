@@ -50,15 +50,21 @@ export default function SignIn() {
         <div className="App">
             <div className="Header"><NavBar/></div>
             <div className="Content">
-                <h1>Sign in</h1>
-                <form onSubmit={handleSubmit}>
-                    <label> Username: </label> <br/>
-                    <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
-                    <label>Password:</label><br/>
-                    <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
-                    <input type="submit" />
-                </form>
-                <Link to="/sign-up">Don't have an account yet?</Link>
+            <h1>Sign in</h1>
+                <div className="style-text">
+                    <div className="align-center">
+                        <form onSubmit={handleSubmit}>
+                            <label> Username: </label> <br/>
+                            <input type="text" name="username" onChange={e => setUsername(e.target.value)} value={username} placeholder="Enter Your Username"/><br/>
+                            <label>Password:</label><br/>
+                            <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Enter Your Password"/><br/>
+                            <button className="link-button" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    <div className="align-center">
+                        <Link className="link-button" to="/sign-up">Don't have an account yet?</Link>
+                    </div>
+                </div>
             </div>
             <div className="Footer"><Footer/></div>
         </div>
