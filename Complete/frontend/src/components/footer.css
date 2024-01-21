@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
+footer .footer-container {
+    background-color: #ddf7ff;
+    padding: 50px;
+    font-family: 'Raleway', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .nav-link {
+    font-weight: bold;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 10px;
+    margin: 20px;
+    font-size: 18px;
+
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+footer .nav-link:hover {
+    background-color: #262626; 
+    color: #f4f4f4;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    footer .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    footer .nav-link {
+        gap: 22px;
+    }
+}
