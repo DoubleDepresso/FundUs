@@ -76,6 +76,7 @@ input:focus {
 
 /* style for button and link */
 button {
+    font-size: 24px;
     padding: 8px 15px;
     text-decoration: none;
     color: #000000;
@@ -296,7 +297,7 @@ li {
 }
 
 .style-text {
-    margin-left: 5%;
+    margin: 20px 5%;
     color: #004480;
     font-weight: bold;
     font-size: 24px;
